@@ -18,36 +18,42 @@ def hello_call_back():
    tkinter.messagebox.showinfo( 'Hello World!', 'Thanks for coming!')
    user = tkinter.simpledialog.askstring( 'Question', "What's your name? Type Below:" )
    print(user)
-   nameCallBack()
+   name_call_back()
 
 
-def nameCallBack():
+def name_call_back():
     global user
-    nameHello=Label(greeting_frame, text= f"Hi {user}, I'm Python. Please enter a value below:")
-    nameHello.place(x=20, y=50)
+    name_hello=Label(greeting_frame, text= f"Hi {user}, I'm Python. Please enter a value below:")
+    name_hello.place(x=20, y=50)
     D = tkinter.Entry(greeting_frame, width= 40 )
     D.place(x=20, y=70)
     response_frame = ttk.Frame(gui, width= 300, height= 200)
+    display_input=Text(response_frame)
+    user_input = ""
 
-    def takeInput(entryInput):
-        print(entryInput.get())
-        userInput = entryInput.get()
-        displayInput=Text(response_frame)
+    def take_input(entry_input):
+        print(entry_input.get())
+        user_input = entry_input.get()
+        print(user_input)
+    
+    print(user_input)
 
-    def inputDriver():
-        takeInput(D)
-        makeNewFrame()
+    def input_driver():
+        take_input(D)
+        make_new_frame(user_input)
 
-    def makeNewFrame():
+    def make_new_frame(input):
+        print(input)
+
         response_frame['relief'] = 'sunken'
         response_frame.place(x= 20, y= 250)   
-        displayInput.insert('1.0', f'{user}, you entered: {userInput}')
-        displayInput.pack()
+        display_input.insert('1.0', f'{user}, you entered: {input}')
+        display_input.pack()
         
-    E = tkinter.Button(greeting_frame, text ='Ok', command = inputDriver)
+    E = tkinter.Button(greeting_frame, text ='Ok', command = input_driver)
     E.place(x=20, y=90)
        
-
+# user_input not passing correctly - WIP
 
 
 
