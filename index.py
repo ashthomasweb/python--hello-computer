@@ -74,6 +74,42 @@ response_frame.pack_propagate(False)
 Begin = tkinter.Button(greeting_frame, text ='Hello', command = hello_call_back)
 Begin.place(x=20, y=10)
 
+# Object-Oriented Frame Class
+
+class NewFrame(ttk.Frame):
+    def __init__(self, container, width, height):
+        super().__init__(container, width, height)
+
+        self.frame = ttk.Frame(container, width= width, height= height)
+        self.place(x = 230, y= 500)
+
+        # options = {'padx': 5, 'pady': 5, 'width': width, 'height': height}
+
+    #     # label
+    #     self.label = ttk.Label(self, text='Hello, Tkinter!')
+    #     self.label.pack(**options)
+
+    #     # button
+    #     self.button = ttk.Button(self, text='Click Me')
+    #     self.button['command'] = self.button_clicked
+    #     self.button.pack(**options)
+
+    #     # show the frame on the container
+    #     self.pack(**options)
+
+    # def button_clicked(self):
+    #     tkinter.messagebox.showinfo(title='Information',
+    #              message='Hello, Tkinter!')
+
+
+
+frame = NewFrame(gui, 300, 200)
+
+
+
+
+
+
 # Calculator
 
 # Database Operations
