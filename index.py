@@ -108,7 +108,7 @@ Begin.place(x=20, y=10)
 
 class SectionFrame(ttk.Frame):
     def __init__(self, name, container, width, height, relief, placex, placey):
-        super(name).__init__()
+        super().__init__()
         self = name
         name = ttk.Frame(container, width= width, height= height)
         name['relief'] = relief
