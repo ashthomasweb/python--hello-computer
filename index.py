@@ -76,62 +76,79 @@ Begin.place(x=20, y=10)
 
 # Object-Oriented Frame Class
 
-# class NewFrame(ttk.Frame):
-#     def __init__(self, container, width, height):
-#         super().__init__(container, width, height)
 
-#         self.frame = ttk.Frame(container, width= width, height= height)
-#         self.place(x = 230, y= 500)
+class MainFrame(ttk.Frame):
+    def __init__(self, container):
+        super().__init__(container)
 
-#         # options = {'padx': 5, 'pady': 5, 'width': width, 'height': height}
+        options = {'padx': 5, 'pady': 5}
 
-#     #     # label
-#     #     self.label = ttk.Label(self, text='Hello, Tkinter!')
-#     #     self.label.pack(**options)
+        # label
+        self.label = ttk.Label(self, text='Hello, Tkinter!')
+        self.label.pack(**options)
 
-#     #     # button
-#     #     self.button = ttk.Button(self, text='Click Me')
-#     #     self.button['command'] = self.button_clicked
-#     #     self.button.pack(**options)
+        # button
+        # self.button = ttk.Button(self, text='Click Me')
+        # self.button['command'] = self.button_clicked
+        # self.button.pack(**options)
 
-#     #     # show the frame on the container
-#     #     self.pack(**options)
+        # show the frame on the container
+        self.pack(**options)
 
-#     # def button_clicked(self):
-#     #     tkinter.messagebox.showinfo(title='Information',
-#     #              message='Hello, Tkinter!')
+    # def button_clicked(self):
+    #     showinfo(title='Information',
+    #              message='Hello, Tkinter!')
 
 
-
-# frame = NewFrame(gui, 300, 200)
 
 
 class SectionFrame(ttk.Frame):
-    def __init__(self, name, container, width, height, relief, placex, placey):
+    def __init__(self, name, container, width, height, relief):
         super().__init__()
-        self = name
-        name = ttk.Frame(container, width= width, height= height)
-        name['relief'] = relief
-        name.place(x= placex, y= placey)
+        self.name = name
+        self.name = ttk.Frame(container, width= width, height= height)
+        self.name['relief'] = relief
+        self.name.place(x= placex, y= placey)
         print(name)
 
-a = SectionFrame('test1', gui, 50, 100, 'groove', 230, 500)
 
-b = SectionFrame('test2', gui, 50, 100, 'raised', 290, 500)
+def place_frame():
+    # test_frame4 = SectionFrame('test4', b, 30, 30, 'groove')
+    createClassFrame()
+    # subFrameCallback()
 
-c = SectionFrame('test3', gui, 50, 100, 'sunken', 350, 500)
+def createClassFrame():
+    a = SectionFrame('test1', gui, 50, 100, 'groove')
+
+# place_frame()
+
+
+
+
+def subFrameCallback():
+    # frame = MainFrame(test1)
+
+    test_frame = ttk.Frame('test1', width= 10, height= 10)
+    test_frame['relief'] = 'sunken'
+    test_frame.place(x= 5, y= 5)
+    test_frame.pack_propagate(False)
+
+# a.place(x=20, y=500)
+
+# b = SectionFrame('test2', gui, 50, 100, 'raised')
+
+# c = SectionFrame('test3', gui, 50, 100, 'sunken')
 
 # print(test3.name)
 
 
-def place_frame():
-    test_frame4 = SectionFrame('test4', b, 30, 30, 'groove', 5, 5)
 
 
 nameTest = tkinter.Button(gui, text ='Place', command = place_frame)
 nameTest.place(x=20, y=10)
 
-
+nameTest2 = tkinter.Button(gui, text ='Place', command = subFrameCallback)
+nameTest2.place(x=20, y=30)
 
 
 
