@@ -1,12 +1,23 @@
+import mysql.connector
 
 # import tkinter
 from tkinter import *
 from tkinter import ttk
+from tkinter.ttk import *
 
 import tkinter.messagebox
 import tkinter.simpledialog
 
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="ashleyth",
+  password="1473Pinkship!"
+)
+
+
 gui = tkinter.Tk()
+
 
 # empty string for user's name
 user = ''
@@ -74,89 +85,50 @@ response_frame.pack_propagate(False)
 Begin = tkinter.Button(greeting_frame, text ='Hello', command = hello_call_back)
 Begin.place(x=20, y=10)
 
-# Object-Oriented Frame Class
 
 
-class MainFrame(ttk.Frame):
-    def __init__(self, container):
-        super().__init__(container)
+# Database Operations
 
-        options = {'padx': 5, 'pady': 5}
+s = Style()
+s.configure('My.TFrame', background='pink')
 
-        # label
-        self.label = ttk.Label(self, text='Hello, Tkinter!')
-        self.label.pack(**options)
+db_frame = ttk.Frame(gui, width= 500, height= 300, style='My.TFrame')
+db_frame['relief'] = 'raised'
+db_frame.place(x= 150, y= 500)
+db_frame.config()
+db_frame.pack_propagate(False)
 
-        # button
-        # self.button = ttk.Button(self, text='Click Me')
-        # self.button['command'] = self.button_clicked
-        # self.button.pack(**options)
+# create label for user entry
+section_title=Label(db_frame, text= "Create A Database")
+section_title.place(x=10, y=10)
 
-        # show the frame on the container
-        self.pack(**options)
+# create label for user entry
+enter_title=Label(db_frame, text= "Enter name below:")
+enter_title.place(x=10, y=35)
 
-    # def button_clicked(self):
-    #     showinfo(title='Information',
-    #              message='Hello, Tkinter!')
-
-
-
-
-class SectionFrame(ttk.Frame):
-    def __init__(self, name, container, width, height, relief):
-        super().__init__()
-        self.name = name
-        self.name = ttk.Frame(container, width= width, height= height)
-        self.name['relief'] = relief
-        self.name.place(x= placex, y= placey)
-        print(name)
+# create user entry field
+F = tkinter.Entry(db_frame, width= 40 )
+F.place(x=10, y=60)
 
 
-def place_frame():
-    # test_frame4 = SectionFrame('test4', b, 30, 30, 'groove')
-    createClassFrame()
-    # subFrameCallback()
-
-def createClassFrame():
-    a = SectionFrame('test1', gui, 50, 100, 'groove')
-
-# place_frame()
+mycursor = mydb.cursor()
+# gets user entered value
+temp_db_name = ""
+def create_db_driver():
+    temp_db_name = F.get()
+    mycursor.execute(f"CREATE DATABASE {temp_db_name}")
 
 
-
-
-def subFrameCallback():
-    # frame = MainFrame(test1)
-
-    test_frame = ttk.Frame('test1', width= 10, height= 10)
-    test_frame['relief'] = 'sunken'
-    test_frame.place(x= 5, y= 5)
-    test_frame.pack_propagate(False)
-
-# a.place(x=20, y=500)
-
-# b = SectionFrame('test2', gui, 50, 100, 'raised')
-
-# c = SectionFrame('test3', gui, 50, 100, 'sunken')
-
-# print(test3.name)
-
-
-
-
-nameTest = tkinter.Button(gui, text ='Place', command = place_frame)
-nameTest.place(x=20, y=10)
-
-nameTest2 = tkinter.Button(gui, text ='Place', command = subFrameCallback)
-nameTest2.place(x=20, y=30)
+G = tkinter.Button(db_frame, text ='Create', command = create_db_driver)
+G.place(x=260, y=56)
 
 
 
 
 
-# new_frame = ttk.Frame(gui, width= 340, height= 150)
+# new_frame = ttk.Frame(a, width= 10, height= 15)
 # new_frame['relief'] = 'groove'
-# new_frame.place(x= 230, y= 500)
+# new_frame.place(x= 2, y= 5)
 
 
 
@@ -164,11 +136,10 @@ nameTest2.place(x=20, y=30)
 
 # Calculator
 
-# Database Operations
 
 # main window styling options
 gui.title('Hello, Meta... Python Desktop Application')
-gui.geometry('800x800')
+gui.geometry('800x900')
 
 # run program
 gui.mainloop()
