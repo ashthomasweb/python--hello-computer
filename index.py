@@ -120,16 +120,36 @@ F = tkinter.Entry(db_frame, width= 40 )
 F.place(x=10, y=60)
 
 
-# MySQL database queries - needs inteface
+# MySQL database queries - needs interface
+current_db = ""
+
 mydb = mysql.connector.connect(
   host="localhost",
   user="ashleyth",
-  password="1473Pinkship!"
+  password="1473Pinkship!",
+  database=f"{current_db}"
 )
+
+def def_db():
+    global mydb
+    global mycursor
+    mydb = mysql.connector.connect(
+      host="localhost",
+      user="ashleyth",
+      password="1473Pinkship!",
+      database=f"{current_db}"
+    )
+    mycursor = mydb.cursor()
+
+
+
+
+    
 
 mycursor = mydb.cursor()
 # gets user entered value
 user_text_entry = ""
+
 def create_db_driver():
     user_text_entry = F.get()
     mycursor.execute(f"CREATE DATABASE {user_text_entry}")
@@ -141,15 +161,17 @@ def view_all_db():
         db_display_text.insert('1.0', f'{x}\n')
 
 def connect_to_db():
-    user_text_entry = F.get()
+    global current_db
+    current_db = F.get()
+    def_db()
 
-    mydb = mysql.connector.connect(
-        host="localhost",
-        user="ashleyth",
-        password="1473Pinkship!",
-        database=f"{user_text_entry}"
-    )
-    mycursor = mydb.cursor()
+    # mydb = mysql.connector.connect(
+    #     host="localhost",
+    #     user="ashleyth",
+    #     password="1473Pinkship!",
+    #     database=f"{user_text_entry}"
+    # )
+    # mycursor = mydb.cursor()
     
     db_display_text.delete('1.0', 'end')
     db_display_text.insert('1.0', f'{mydb}\n')
@@ -160,6 +182,17 @@ def sql_command():
     for x in mycursor:
             db_display_text.insert('1.0', f'{x}\n')
 
+def show_tables():
+    mycursor.execute("SHOW TABLES")
+
+    for x in mycursor:
+            db_display_text.insert('1.0', f'{x}\n')
+
+def display_cursor():
+    # for x in mycursor:
+    #         db_display_text.insert('1.0', f'{x}\n')
+    
+    db_display_text.insert('1.0', f'{mydb}\n')
 
 
 
@@ -176,6 +209,11 @@ I.place(x=380, y=56)
 J = tkinter.Button(db_frame, text ='SQL Command:', command = sql_command)
 J.place(x=400, y=26)
 
+K = tkinter.Button(db_frame, text ='Show Tables', command = show_tables)
+K.place(x=300, y=26)
+
+L = tkinter.Button(db_frame, text ='Cursor Contents', command = display_cursor)
+L.place(x=200, y=26)
 
 # new_frame = ttk.Frame(a, width= 10, height= 15)
 # new_frame['relief'] = 'groove'
