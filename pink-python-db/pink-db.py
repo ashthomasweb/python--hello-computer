@@ -8,7 +8,6 @@ from tkinter.ttk import *
 import tkinter.messagebox
 import tkinter.simpledialog
 
-
 gui = tkinter.Tk()
 
 # frame and styling
@@ -123,7 +122,6 @@ K.place(x=300, y=26)
 
 L = tkinter.Button(db_frame, text ='Cursor Contents', command = display_cursor)
 L.place(x=200, y=26)
-
 
 # main window styling options
 gui.title('PinkPy DB')
