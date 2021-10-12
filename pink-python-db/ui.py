@@ -63,8 +63,21 @@ J.place(x=400, y=26)
 K = tkinter.Button(db_frame, text ='Show Tables', command = data.show_tables)
 K.place(x=300, y=26)
 
-L = tkinter.Button(db_frame, text ='Cursor Contents', command = data.display_cursor)
-L.place(x=200, y=26)
+# L = tkinter.Button(db_frame, text ='Cursor Contents', command = data.display_cursor)
+# L.place(x=200, y=26)
+
+M = tkinter.Button(db_frame, text ='Interface Call', command = logic.test)
+M.place(x=100, y=126)
+
+N = tkinter.Button(db_frame, text ='Interface Switch', command = lambda: logic.DependencyInjection.switch(1))
+N.place(x=200, y=126)
+
+O = tkinter.Button(db_frame, text ='Interface Switch', command = lambda: logic.DependencyInjection.switch(2))
+O.place(x=300, y=126)
+
+P = tkinter.Button(db_frame, text ='Interface Switch', command = lambda: logic.DependencyInjection.switch(3))
+P.place(x=400, y=126)
+
 
 # main window styling options
 gui.title('PinkPython DB')
