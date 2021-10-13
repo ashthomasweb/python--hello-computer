@@ -1,32 +1,31 @@
 
 import ui
 import data
-
+import credentials
 
 db = None
+mydb = None
 
 class DependencyInjection():
-# switch to pick db
-# if: user select
-# then: get selected db
-# DB = user select
+
     global db
 
     def switch(input):
         global db
-        if input == 1:
+        global mydb
 
+        if input == 1:
             db = data.test_db_1
             print('db1')
-            db.create()
         elif input == 2:
             db = data.test_db_2
             print('db2')
         elif input == 3:
+            # data.mydb = credentials.db1
             db = data.test_db_3
-            print('db3')
+            print('MySQL')
         else: 
-            print('hell0')
+            print('else')
  
 
 

@@ -1,12 +1,12 @@
-
 import mysql.connector
+
 import logic
 import ui
 
 
+current_db = ""
 
 # MySQL database queries - needs interface
-current_db = ""
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -33,16 +33,42 @@ mycursor = mydb.cursor()
 user_text_entry = ""
 
 
-
+# create
 def create_db_driver():
     user_text_entry = ui.F.get()
     mycursor.execute(f"CREATE DATABASE {user_text_entry}")
 
+# read
 def view_all_db():
     mycursor.execute("SHOW DATABASES")
     ui.db_display_text.delete('1.0', 'end')
     for x in mycursor:
         ui.db_display_text.insert('1.0', f'{x}\n')
+
+
+def show_tables():
+    mycursor.execute("SHOW TABLES")
+
+    for x in mycursor:
+            ui.db_display_text.insert('1.0', f'{x}\n')
+
+
+# command
+def sql_command():
+    user_text_entry = ui.F.get()
+    mycursor.execute(f"{user_text_entry}")
+    for x in mycursor:
+            ui.db_display_text.insert('1.0', f'{x}\n')
+
+# test/development
+def display_cursor():
+    for x in mycursor:
+            ui.db_display_text.insert('1.0', f'{x}\n')
+
+    ui.db_display_text.insert('1.0', f'{mydb}\n')
+
+
+
 
 def connect_to_db():
     global current_db
@@ -51,25 +77,6 @@ def connect_to_db():
     ui.db_display_text.delete('1.0', 'end')
     ui.db_display_text.insert('1.0', f'{mydb}\n')
     
-def sql_command():
-    user_text_entry = ui.F.get()
-    mycursor.execute(f"{user_text_entry}")
-    for x in mycursor:
-            ui.db_display_text.insert('1.0', f'{x}\n')
-
-def show_tables():
-    mycursor.execute("SHOW TABLES")
-
-    for x in mycursor:
-            ui.db_display_text.insert('1.0', f'{x}\n')
-
-def display_cursor():
-    for x in mycursor:
-            ui.db_display_text.insert('1.0', f'{x}\n')
-
-    ui.db_display_text.insert('1.0', f'{mydb}\n')
-
-
 
 # TEST INTERFACE
 
