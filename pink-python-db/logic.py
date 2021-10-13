@@ -3,20 +3,7 @@ import ui
 import data
 
 
-# 
-# class Interface():
-# DB = DependencyInjection()
-
-# createFromUI():
-    # DB.create
-
-# readFromUI():
-    # DB.read
-
-
-
 db = None
-
 
 class DependencyInjection():
 # switch to pick db
@@ -43,9 +30,21 @@ class DependencyInjection():
  
 
 
+class Interface():
 
-def test():
-    db.create()
+    def create_ui():
+        db.create()
+
+    def read_ui():
+        db.read()
+
+    def update_ui():
+        db.update()
+
+    def delete_ui():
+        db.delete()
+
+
 
 
 

@@ -63,7 +63,7 @@ class Cat():
 class ApexPredator(Cat):
 
     def __init__(self, kind, environment, name, breed, age, weight):
-        Cat.__init__(self, name, breed, age, weight)
+        super().__init__(name, breed, age, weight)
         self.type = kind
         self.environment = environment
 
@@ -102,3 +102,7 @@ print(cat3.environment)
 print(cat3.breed)
 print(cat3.years)
 print(cat3.weight)
+
+print(cat1.species, cat2.species, cat3.species)
+
+# proper practice would typically be to make the more general "ApexPredator" class a parent class

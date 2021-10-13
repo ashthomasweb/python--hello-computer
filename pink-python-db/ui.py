@@ -66,16 +66,25 @@ K.place(x=300, y=26)
 # L = tkinter.Button(db_frame, text ='Cursor Contents', command = data.display_cursor)
 # L.place(x=200, y=26)
 
-M = tkinter.Button(db_frame, text ='Interface Call', command = logic.test)
-M.place(x=100, y=126)
+M = tkinter.Button(db_frame, text ='Interface Create', command = logic.Interface.create_ui)
+M.place(x=100, y=95)
 
-N = tkinter.Button(db_frame, text ='Interface Switch', command = lambda: logic.DependencyInjection.switch(1))
+Q = tkinter.Button(db_frame, text ='Interface Read', command = logic.Interface.read_ui)
+Q.place(x=200, y=95)
+
+R = tkinter.Button(db_frame, text ='Interface Update', command = logic.Interface.update_ui)
+R.place(x=300, y=95)
+
+S = tkinter.Button(db_frame, text ='Interface Delete', command = logic.Interface.delete_ui)
+S.place(x=400, y=95)
+
+N = tkinter.Button(db_frame, text ='DI Switch 1', command = lambda: logic.DependencyInjection.switch(1))
 N.place(x=200, y=126)
 
-O = tkinter.Button(db_frame, text ='Interface Switch', command = lambda: logic.DependencyInjection.switch(2))
+O = tkinter.Button(db_frame, text ='DI Switch 2', command = lambda: logic.DependencyInjection.switch(2))
 O.place(x=300, y=126)
 
-P = tkinter.Button(db_frame, text ='Interface Switch', command = lambda: logic.DependencyInjection.switch(3))
+P = tkinter.Button(db_frame, text ='DI Switch 3', command = lambda: logic.DependencyInjection.switch(3))
 P.place(x=400, y=126)
 
 
