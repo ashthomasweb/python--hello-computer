@@ -1,5 +1,6 @@
 import mysql.connector
 
+
 current_db = ""
 
 db1_server = mysql.connector.connect(
@@ -14,6 +15,8 @@ db1_query = mysql.connector.connect(
     password="1473Pinkship!",
     database=f"{current_db}"
 )
+
+
 
 
 

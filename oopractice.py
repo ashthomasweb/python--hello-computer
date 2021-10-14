@@ -105,4 +105,5 @@ print(cat3.weight)
 
 print(cat1.species, cat2.species, cat3.species)
 
+
 # proper practice would typically be to make the more general "ApexPredator" class a parent class

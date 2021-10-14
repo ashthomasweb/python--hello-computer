@@ -1,6 +1,7 @@
 
 import ui
-import data
+import dal_mysql
+import dal_mongodb
 import credentials
 
 db = None
@@ -15,14 +16,15 @@ class DependencyInjection():
         global mydb
 
         if input == 1:
-            db = data.test_db_1
+            db = dal_mysql.test_db_1
             print('db1')
         elif input == 2:
-            db = data.test_db_2
+            db = dal_mongodb.myclient
             print('db2')
         elif input == 3:
-            # data.mydb = credentials.db1
-            db = data.test_db_3
+            dal_mysql.mydb = credentials.db1_server
+            # needs to choose 
+            db = dal_mysql.mydb
             print('MySQL')
         else: 
             print('else')
@@ -30,6 +32,9 @@ class DependencyInjection():
 
 
 class Interface():
+
+    def show_all_db_ui():
+        db.show_all_db()
 
     def create_ui():
         db.create()

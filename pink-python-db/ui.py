@@ -1,5 +1,6 @@
 
 # import tkinter
+from logging import log
 from tkinter import *
 from tkinter import ttk
 from tkinter.ttk import *
@@ -8,7 +9,9 @@ import tkinter.messagebox
 import tkinter.simpledialog
 
 import logic
-import data
+import dal_mysql as data
+import dal_mongodb
+
 
 gui = tkinter.Tk()
 
@@ -51,7 +54,7 @@ F.place(x=10, y=60)
 G = tkinter.Button(db_frame, text ='Create', command = data.create_db_driver)
 G.place(x=260, y=56)
 
-H = tkinter.Button(db_frame, text ='View All', command = data.view_all_db)
+H = tkinter.Button(db_frame, text ='View All', command = data.show_all_db)
 H.place(x=310, y=56)
 
 I = tkinter.Button(db_frame, text ='Connect to:', command = data.connect_to_db)
@@ -63,8 +66,8 @@ J.place(x=400, y=26)
 K = tkinter.Button(db_frame, text ='Show Tables', command = data.show_tables)
 K.place(x=300, y=26)
 
-# L = tkinter.Button(db_frame, text ='Cursor Contents', command = data.display_cursor)
-# L.place(x=200, y=26)
+L = tkinter.Button(db_frame, text ='Cursor Contents', command = logic.Interface.show_all_db_ui)
+L.place(x=200, y=26)
 
 M = tkinter.Button(db_frame, text ='Interface Create', command = logic.Interface.create_ui)
 M.place(x=100, y=95)

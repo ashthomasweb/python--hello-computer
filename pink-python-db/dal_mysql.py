@@ -28,6 +28,12 @@ def def_db():
 
 # global cursor object created empty at runtime
 mycursor = mydb.cursor()
+    
+def recheck_db():
+    global mycursor
+    # global cursor object created empty at runtime
+    mycursor = mydb.cursor()
+
 
 # gets user entered value
 user_text_entry = ""
@@ -39,7 +45,8 @@ def create_db_driver():
     mycursor.execute(f"CREATE DATABASE {user_text_entry}")
 
 # read
-def view_all_db():
+def show_all_db():
+    recheck_db()
     mycursor.execute("SHOW DATABASES")
     ui.db_display_text.delete('1.0', 'end')
     for x in mycursor:
