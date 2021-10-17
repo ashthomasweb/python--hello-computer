@@ -29,6 +29,31 @@ def def_db():
 # global cursor object created empty at runtime
 mycursor = mydb.cursor()
     
+
+class GlobalCaller():
+
+    def show_all_db():
+        recheck_db()
+        mycursor.execute("SHOW DATABASES")
+        ui.db_display_text.delete('1.0', 'end')
+
+        # not working...
+        logic.result_sender.results = mycursor
+        logic.result_sender.send_results()
+        print(mycursor)
+
+
+        
+        # for x in mycursor:
+        #     ui.db_display_text.insert('1.0', f'{x}\n')
+
+    # create
+    def create_db():
+        user_text_entry = ui.F.get()
+        mycursor.execute(f"CREATE DATABASE {user_text_entry}")
+
+
+
 def recheck_db():
     global mycursor
     # global cursor object created empty at runtime
@@ -39,18 +64,8 @@ def recheck_db():
 user_text_entry = ""
 
 
-# create
-def create_db_driver():
-    user_text_entry = ui.F.get()
-    mycursor.execute(f"CREATE DATABASE {user_text_entry}")
 
 # read
-def show_all_db():
-    recheck_db()
-    mycursor.execute("SHOW DATABASES")
-    ui.db_display_text.delete('1.0', 'end')
-    for x in mycursor:
-        ui.db_display_text.insert('1.0', f'{x}\n')
 
 
 def show_tables():
@@ -85,8 +100,11 @@ def connect_to_db():
     ui.db_display_text.insert('1.0', f'{mydb}\n')
     
 
-# TEST INTERFACE
 
+
+
+
+# TEST OBJECTS
 
 class test_db_1():
     def create():

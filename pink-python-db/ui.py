@@ -51,11 +51,11 @@ F.place(x=10, y=60)
 
 
 # buttons
-G = tkinter.Button(db_frame, text ='Create', command = data.create_db_driver)
+G = tkinter.Button(db_frame, text ='Create DB', command = logic.GlobalInterface.create_db_ui)
 G.place(x=260, y=56)
 
-H = tkinter.Button(db_frame, text ='View All', command = data.show_all_db)
-H.place(x=310, y=56)
+# H = tkinter.Button(db_frame, text ='View All', command = data.show_all_db)
+# H.place(x=310, y=56)
 
 I = tkinter.Button(db_frame, text ='Connect to:', command = data.connect_to_db)
 I.place(x=380, y=56)
@@ -66,32 +66,33 @@ J.place(x=400, y=26)
 K = tkinter.Button(db_frame, text ='Show Tables', command = data.show_tables)
 K.place(x=300, y=26)
 
-L = tkinter.Button(db_frame, text ='Cursor Contents', command = logic.Interface.show_all_db_ui)
+L = tkinter.Button(db_frame, text ='View All DB', command = logic.GlobalInterface.show_all_db_ui)
 L.place(x=200, y=26)
 
-M = tkinter.Button(db_frame, text ='Interface Create', command = logic.Interface.create_ui)
+M = tkinter.Button(db_frame, text ='Interface Create', command = logic.GlobalInterface.create_test)
 M.place(x=100, y=95)
 
-Q = tkinter.Button(db_frame, text ='Interface Read', command = logic.Interface.read_ui)
+Q = tkinter.Button(db_frame, text ='Interface Read', command = logic.GlobalInterface.read_test)
 Q.place(x=200, y=95)
 
-R = tkinter.Button(db_frame, text ='Interface Update', command = logic.Interface.update_ui)
+R = tkinter.Button(db_frame, text ='Interface Update', command = logic.GlobalInterface.update_test)
 R.place(x=300, y=95)
 
-S = tkinter.Button(db_frame, text ='Interface Delete', command = logic.Interface.delete_ui)
+S = tkinter.Button(db_frame, text ='Interface Delete', command = logic.GlobalInterface.delete_test)
 S.place(x=400, y=95)
 
-N = tkinter.Button(db_frame, text ='DI Switch 1', command = lambda: logic.DependencyInjection.switch(1))
-N.place(x=200, y=126)
+N = tkinter.Button(gui, text ='DI Test 1', command = lambda: logic.DependencyInjection.switch(1))
+N.place(x=200, y=10)
 
-O = tkinter.Button(db_frame, text ='DI Switch 2', command = lambda: logic.DependencyInjection.switch(2))
-O.place(x=300, y=126)
+O = tkinter.Button(gui, text ='MongoDB', command = lambda: logic.DependencyInjection.switch(2))
+O.place(x=300, y=10)
 
-P = tkinter.Button(db_frame, text ='DI Switch 3', command = lambda: logic.DependencyInjection.switch(3))
-P.place(x=400, y=126)
+P = tkinter.Button(gui, text ='MySQL', command = lambda: logic.DependencyInjection.switch(3))
+P.place(x=400, y=10)
 
 
 # main window styling options
+
 gui.title('PinkPython DB')
 gui.geometry('900x700')
 
