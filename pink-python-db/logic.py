@@ -65,10 +65,13 @@ class Results():
     def __init__(self):
         pass    
 
-    def send_results(results):
-        print(results)
-        # for x in results:
-        #     ui.db_display_text.insert('1.0', f'{x}\n')
+    def set_result(self, input):
+        self.results = input
+
+    def send_results(self):
+        print(self.results)
+        for x in self.results:
+            ui.db_display_text.insert('1.0', f'{x}\n')
 
 
 result_sender = Results()

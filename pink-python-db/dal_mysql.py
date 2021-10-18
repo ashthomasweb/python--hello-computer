@@ -38,7 +38,7 @@ class GlobalCaller():
         ui.db_display_text.delete('1.0', 'end')
 
         # not working...
-        logic.result_sender.results = mycursor
+        logic.result_sender.set_result(mycursor)
         logic.result_sender.send_results()
         print(mycursor)
 
