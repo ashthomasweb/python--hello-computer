@@ -22,7 +22,7 @@ class DependencyInjection():
             db = dal_mongodb.GlobalCaller
             print('Connected to MongoDB local')
         elif input == 3:
-            dal_mysql.mydb = credentials.db1_server
+            dal_mysql.mydb = credentials.db
             # needs to choose 
             db = dal_mysql.GlobalCaller
             print('Conntected to MySQL local')
@@ -30,7 +30,9 @@ class DependencyInjection():
             print('failboat sailboat')
  
 
-
+# db set by DI
+# called from ui
+# method run in appropriate DAL
 class GlobalInterface():
 
     def show_all_db_ui():
@@ -56,8 +58,6 @@ class GlobalInterface():
 
 
 
-# Not working...
-
 class Results():
 
     results = None
@@ -65,13 +65,13 @@ class Results():
     def __init__(self):
         pass    
 
-    def set_result(self, input):
-        self.results = input
-
     def send_results(self):
-        print(self.results)
         for x in self.results:
             ui.db_display_text.insert('1.0', f'{x}\n')
+
+    def set_result(self, input):
+        self.results = input
+        self.send_results()
 
 
 result_sender = Results()
