@@ -57,8 +57,8 @@ class Cat():
         self.years = age
         self.weight = weight
 
-    def found_new_species(input):
-        Cat.species = input
+    def found_new_species(self, input):
+        self.species = input
 
 class ApexPredator(Cat):
 
@@ -104,6 +104,10 @@ print(cat3.years)
 print(cat3.weight)
 
 print(cat1.species, cat2.species, cat3.species)
+
+cat1.found_new_species('Catticus Rex')
+
+print(cat1.species)
 
 
 # proper practice would typically be to make the more general "ApexPredator" class a parent class
