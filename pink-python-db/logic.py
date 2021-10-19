@@ -25,7 +25,7 @@ class DependencyInjection():
             dal_mysql.mydb = credentials.db
             # needs to choose 
             db = dal_mysql.GlobalCaller
-            print('Conntected to MySQL local')
+            print('Connected to MySQL local')
         else: 
             print('failboat sailboat')
  

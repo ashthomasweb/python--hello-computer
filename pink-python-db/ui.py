@@ -93,6 +93,6 @@ P.place(x=400, y=10)
 
 # main window styling options
 
-gui.title('PinkPython DB')
+gui.title('Pink DB')
 gui.geometry('900x700')
 
