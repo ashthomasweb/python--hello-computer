@@ -19,7 +19,7 @@ This is a simple database query desktop application. Project is in development. 
 
 ## Screenshots
 * Basic Window
-![Example screenshot](/pink-db/readme/pinkDB-capture.png)
+![Example screenshot](/pink-db/readme/pinkDB-capture.PNG)
 
 ## Technologies
 * Python 3
