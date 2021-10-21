@@ -1,7 +1,7 @@
 import pymongo
 import ui 
 
-myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+myclient = None
 
 class GlobalCaller():
 

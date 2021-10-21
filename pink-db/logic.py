@@ -19,6 +19,7 @@ class DependencyInjection():
             db = dal_mysql.test_db_1
             print('test db1')
         elif input == 2:
+            dal_mongodb.myclient = credentials.myclient
             db = dal_mongodb.GlobalCaller
             print('Connected to MongoDB local')
         elif input == 3:

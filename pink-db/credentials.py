@@ -1,4 +1,5 @@
 from logging import currentframe
+import pymongo
 import mysql.connector
 
 class Database():
@@ -19,6 +20,10 @@ class Database():
 
 db = Database()
 
+
+# MongoDB Client
+
+myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 
 
 
