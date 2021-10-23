@@ -19,7 +19,7 @@ This is a simple database query desktop application. Project is in development. 
 
 ## Screenshots
 * Basic Window
-![Example screenshot](/pink-db/readme/pinkDB-capture.PNG)
+![Example screenshot](/pink-db/readme/pinkDB-capture2.PNG)
 
 ## Technologies
 * Python 3
@@ -32,7 +32,7 @@ This is a simple database query desktop application. Project is in development. 
 * Quick switching from one database to another
 
 ## To-do List:
-* Generate README To-do list
+* Generate To-do list
 
 ## Known Issues 
 * Incomplete
