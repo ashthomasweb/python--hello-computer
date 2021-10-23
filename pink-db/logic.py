@@ -29,6 +29,8 @@ class DependencyInjection():
         elif input == 3:
             # get credentials and set active db to local MySQL module in DAL
             dal_mysql.mydb = credentials.db
+            # set db server/query variable in DAL
+            dal_mysql.set_db_server()
             # connect module caller and global interface object
             db = dal_mysql.GlobalCaller
             print('Interface connected to local MySQL')

@@ -68,6 +68,11 @@ F.place(x=10, y=30)
 
 # buttons
 
+# Test commands
+
+T = btn(db_select_frame, text ='Test Command', width = 12, command = data.test_method)
+T.place(x=10, y=10)
+
 # Global Operations
 G = btn(server_oper_frame, text ='Create DB', command = logic.GlobalInterface.create_db)
 G.place(x= 10, y= 25)

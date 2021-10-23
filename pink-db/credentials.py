@@ -1,8 +1,10 @@
+
 import pymongo
 import mysql.connector
 
+current_db = ""
+
 class Database():
-    current_db = ""
 
     server = mysql.connector.connect(
         host="localhost",
@@ -10,6 +12,7 @@ class Database():
         password="1473Pinkship!",
     )
 
+    
     query = mysql.connector.connect(
         host="localhost",
         user="ashleyth",
@@ -18,7 +21,7 @@ class Database():
     )
 
 db = Database()
-
+# 
 
 # MongoDB Client
 
