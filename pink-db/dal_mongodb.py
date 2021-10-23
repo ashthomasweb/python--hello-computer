@@ -15,3 +15,4 @@ class GlobalCaller():
     def create_db():
         print('mongodb create!')
 
+# END of document

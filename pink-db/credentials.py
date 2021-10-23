@@ -1,4 +1,3 @@
-from logging import currentframe
 import pymongo
 import mysql.connector
 
@@ -28,3 +27,4 @@ myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 
 
 
+# END of document
