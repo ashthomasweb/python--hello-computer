@@ -50,18 +50,18 @@ class GlobalInterface():
 
 
 
-    # mock CRUD operations 
-    def create_test():
-        db.create()
+    # # mock CRUD operations 
+    # def create_test():
+    #     db.create()
 
-    def read_test():
-        db.read()
+    # def read_test():
+    #     db.read()
 
-    def update_test():
-        db.update()
+    # def update_test():
+    #     db.update()
 
-    def delete_test():
-        db.delete()
+    # def delete_test():
+    #     db.delete()
 
 
 
