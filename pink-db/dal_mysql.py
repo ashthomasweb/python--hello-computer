@@ -65,9 +65,13 @@ def connect_to_db():
     ui.db_display_text.insert('1.0', f'{mydb}\n')
     set_db_server()
     
+
+
+
 def test_method():
     print(mydb.current_db)
     print(mydb.query)
+    
 
 
 

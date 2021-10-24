@@ -6,11 +6,22 @@ current_db = ""
 
 class Database():
 
-    server = mysql.connector.connect(
-        host="localhost",
-        user="ashleyth",
-        password="1473Pinkship!",
-    )
+    config = {
+        'host': 'localhost',
+        'user': 'ashleyth',
+        'password': '1473Pinkship!'
+    }
+
+
+
+    server = mysql.connector.connect(**config)
+
+
+    # server = mysql.connector.connect(
+    #     host="localhost",
+    #     user="ashleyth",
+    #     password="1473Pinkship!",
+    # )
 
     
     query = mysql.connector.connect(
