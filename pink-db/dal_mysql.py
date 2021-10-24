@@ -1,18 +1,18 @@
-# import mysql.connector
-
 import logic
 import ui
 
-# current_db = ""
-
 # global database and cursor variables created empty at runtime
 mydb = None # set by DependencyInjection
-
 myserver = None # set by DAL GlobalCaller
-myquery = None # set by DAL GlobalCaller
+
 user_text_entry = ""
 
-current_db = ""
+def set_db_server():
+    global myserver
+    global mydb
+    # global cursor object created empty at runtime
+    myserver = mydb.server.cursor()
+    
 
 class GlobalCaller():
 
@@ -27,24 +27,18 @@ class GlobalCaller():
         user_text_entry = ui.F.get()
         myserver.execute(f"CREATE DATABASE {user_text_entry}")
 
-
-def set_db_server():
-    global myserver
-    global myquery
-    global mydb
-
-    # global cursor object created empty at runtime
-    myserver = mydb.server.cursor()
-    
-    myquery = mydb.query.cursor()
+    # delete
 
 
 
+
+
+# STILL NEEDS INTERFACE! 
 def show_tables():
 
-    myquery.execute("SHOW TABLES")
+    myserver.execute("SHOW TABLES")
 
-    for x in myquery:
+    for x in myserver:
             ui.db_display_text.insert('1.0', f'{x}\n')
 
 
@@ -56,22 +50,22 @@ def sql_command():
 
 
 def connect_to_db():
-    global current_db
-    current_db = ui.F.get()
-    
-    # set_db_server()
+    myserver.execute(f"USE {ui.F.get()}")
 
     ui.db_display_text.delete('1.0', 'end')
     ui.db_display_text.insert('1.0', f'{mydb}\n')
-    set_db_server()
-    
+    ui.db_display_text.insert('1.0', f'Connected to {ui.F.get()}\n')
+    display_current_db()
 
+    
+def display_current_db():
+    myserver.execute('SELECT DATABASE()')
+    for x in myserver:
+        ui.info_display_text.insert('1.0', f'{x}\n')
 
 
 def test_method():
-    print(mydb.current_db)
-    print(mydb.query)
-    
+    print('halp')
 
 
 

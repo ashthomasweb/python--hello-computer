@@ -47,7 +47,16 @@ db_display_frame.pack_propagate(False)
 # create text field
 db_display_text=Text(db_display_frame)
 db_display_text.pack(expand=True)
-# db_display.place(x= 50, y= 100)
+
+# info display area
+info_display_frame = ttk.Frame(db_display_frame, width= 200, height= 20)
+info_display_frame['relief'] = 'groove'
+info_display_frame.place(x= 10, y= 10)
+info_display_frame.pack_propagate(False)
+
+# create text field
+info_display_text=Text(info_display_frame)
+info_display_text.pack(expand=True)
 
 # title for section
 server_title=Label(server_oper_frame, text= "Server Operations")

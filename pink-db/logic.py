@@ -38,7 +38,6 @@ class DependencyInjection():
             print('failboat sailboat')
  
 
-
 # db set by DI
 # called from ui
 # method run in appropriate DAL
@@ -66,8 +65,6 @@ class GlobalInterface():
     #     db.delete()
 
 
-
-# 
 class Results():
 
     results = None
@@ -85,9 +82,6 @@ class Results():
 
 
 result_sender = Results()
-
-
-
 
 
 # END of document
