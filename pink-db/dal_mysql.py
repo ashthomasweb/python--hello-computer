@@ -50,7 +50,6 @@ def sql_command():
             
     display_current_db()
 
-
 def connect_to_db():
     try:
         myserver.execute(f"USE {ui.F.get()}")
@@ -59,6 +58,7 @@ def connect_to_db():
         logic.message_sender.set_message(f"{err}")
 
     display_current_db()
+
 
     
 def display_current_db():

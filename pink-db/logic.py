@@ -16,21 +16,33 @@ class DependencyInjection():
         global db
         global mydb
 
+        def server_display_handling(input):
+            if input == 1:
+                ui.server_display_text.delete('1.0', 'end')
+                ui.server_display_text.insert('1.0', 'Test DB')
+                print('Interface connected to Test db1')
+            elif input == 2:
+                ui.server_display_text.delete('1.0', 'end')
+                ui.server_display_text.insert('1.0', 'MongoDB Local')
+                print('Interface connected to local MongoDB')
+            elif input == 3:
+                ui.server_display_text.delete('1.0', 'end')
+                ui.server_display_text.insert('1.0', 'MySQL Local')
+                print('Interface connected to local MySQL')
+            else: 
+                # need error handling and messaging
+                print('failboat sailboat')
+
+        server_display_handling(input)
+
         if input == 1:
             # set active db to test module in DAL
             db = dal_test_db.test_db_1
-            print('Interface connected to Test db1')
-            ui.server_display_text.delete('1.0', 'end')
-            ui.server_display_text.insert('1.0', 'Test DB')
         elif input == 2:
             # get credentials and set active db to local MongoDB module in DAL
             dal_mongodb.myclient = credentials.myclient
-
             # connect module caller and global interface object
             db = dal_mongodb.GlobalCaller
-            print('Interface connected to local MongoDB')
-            ui.server_display_text.delete('1.0', 'end')
-            ui.server_display_text.insert('1.0', 'MongoDB Local')
         elif input == 3:
             # get credentials and set active db to local MySQL module in DAL
             dal_mysql.mydb = credentials.db
@@ -38,12 +50,12 @@ class DependencyInjection():
             dal_mysql.set_db_server()
             # connect module caller and global interface object
             db = dal_mysql.GlobalCaller
-            print('Interface connected to local MySQL')
-            ui.server_display_text.delete('1.0', 'end')
-            ui.server_display_text.insert('1.0', 'MySQL Local')
         else: 
+            # need error handling and messaging
             print('failboat sailboat')
  
+
+
 
 # db set by DI
 # called from ui
