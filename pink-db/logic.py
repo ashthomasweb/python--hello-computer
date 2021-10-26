@@ -122,7 +122,7 @@ class Results():
 # Displays system messages and error reporting
 class Messages():
 
-    message = None
+    message = ''
     
     def __init__(self):
         pass
@@ -130,6 +130,7 @@ class Messages():
     def display_message(self):
         ui.message_display_text.delete('1.0', 'end')
         ui.message_display_text.insert('1.0', f'{self.message}')
+        print(self.message)
         
     def set_message(self, input):
          self.message = input
@@ -145,7 +146,7 @@ class UserEntry():
         pass
 
     def get_entry(self):
-        self.entry = ui.F.get()
+        self.entry = ui.command_text.get('1.0','end')
         return self.entry
 
 

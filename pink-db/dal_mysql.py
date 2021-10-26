@@ -8,6 +8,7 @@ myserver = None # set by DAL GlobalCaller
 
 entry = lambda: logic.entry_getter.get_entry()
 
+# called from logic layer
 def set_db_server():
     global myserver
     global mydb
@@ -16,6 +17,16 @@ def set_db_server():
     
 
 class GlobalCaller():
+
+    # create
+    def create_db():
+        try:
+            myserver.execute(f"CREATE DATABASE {entry()}")
+            myserver.execute("SHOW DATABASES")
+            logic.result_sender.set_result(myserver)
+            logic.message_sender.set_message(f"Succesful creation of new database: {entry()}")
+        except BaseException as err:
+            logic.message_sender.set_message(f"{err}")
 
     # read
     def show_all_db():
@@ -26,9 +37,7 @@ class GlobalCaller():
         except BaseException as err:
             logic.message_sender.set_message(f"{err}")
 
-    # create
-    def create_db():
-        myserver.execute(f"CREATE DATABASE {entry()}")
+    # update
 
     # delete
 
@@ -36,7 +45,9 @@ class GlobalCaller():
     def connect_to_db():
         try:
             myserver.execute(f"USE {entry()}")
-            logic.message_sender.set_message(f"Connected to database: {entry()}")
+            myserver.execute("SHOW TABLES")
+            logic.result_sender.set_result(myserver)
+            logic.message_sender.set_message(f"Connected to database: {entry()}\nAll contents (if any) displayed below:")
         except BaseException as err:
             logic.message_sender.set_message(f"{err}")
 
@@ -44,10 +55,13 @@ class GlobalCaller():
 
     # run language-specific command
     def run_command():
-        myserver.execute(f"{entry()}")
-        for x in myserver:
-            ui.db_query_text.insert('1.0', f'{x}\n')
-                
+        try:
+            myserver.execute(f"{entry()}")
+            logic.result_sender.set_result(myserver)
+            logic.message_sender.set_message(f"Results (if any) of custom command displayed below:")
+        except BaseException as err:
+            logic.message_sender.set_message(f"{err}")
+
         display_current_db()
 
 
@@ -57,11 +71,15 @@ class DatabaseCaller():
 
     # read
     def show_tables():
+        try:
+            myserver.execute("SHOW TABLES")
+            logic.result_sender.set_result(myserver)
+            logic.message_sender.set_message(f"All tables displayed below:")
+        except BaseException as err:
+            logic.message_sender.set_message(f"{err}")
+        
 
-        myserver.execute("SHOW TABLES")
 
-        for x in myserver:
-            ui.db_query_text.insert('1.0', f'{x}\n')
 
 
 
@@ -79,6 +97,7 @@ def display_current_db():
 
 # Development functions - not for usage in program architecture
 def test_method():
+    print(ui.command_text.get('1.0', 'end'))
     print('halp')
 
 
