@@ -5,7 +5,6 @@ import ui
 mydb = None # set by DependencyInjection
 myserver = None # set by DAL GlobalCaller
 
-user_text_entry = ""
 
 entry = lambda: logic.entry_getter.get_entry()
 
@@ -20,14 +19,18 @@ class GlobalCaller():
 
     def show_all_db():
         # set_db_server()
-        myserver.execute("SHOW DATABASES")
-        ui.db_query_text.delete('1.0', 'end')
-        logic.result_sender.set_result(myserver)
+        try:
+            myserver.execute("SHOW DATABASES")
+            logic.result_sender.set_result(myserver)
+            logic.message_sender.set_message(f"All databases on server:")
+
+        except BaseException as err:
+            logic.message_sender.set_message(f"{err}")
+
 
     # create
     def create_db():
-        user_text_entry = ui.F.get()
-        myserver.execute(f"CREATE DATABASE {user_text_entry}")
+        myserver.execute(f"CREATE DATABASE {entry()}")
 
     # delete
 
@@ -41,21 +44,20 @@ def show_tables():
     myserver.execute("SHOW TABLES")
 
     for x in myserver:
-            ui.db_query_text.insert('1.0', f'{x}\n')
+        ui.db_query_text.insert('1.0', f'{x}\n')
 
 
 def sql_command():
-    user_text_entry = ui.F.get()
-    myserver.execute(f"{user_text_entry}")
+    myserver.execute(f"{entry()}")
     for x in myserver:
-            ui.db_query_text.insert('1.0', f'{x}\n')
+        ui.db_query_text.insert('1.0', f'{x}\n')
             
     display_current_db()
 
 def connect_to_db():
     try:
         myserver.execute(f"USE {entry()}")
-        logic.message_sender.set_message(f"Connected to database: {ui.F.get()}")
+        logic.message_sender.set_message(f"Connected to database: {entry()}")
     except BaseException as err:
         logic.message_sender.set_message(f"{err}")
 

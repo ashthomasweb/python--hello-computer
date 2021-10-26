@@ -20,14 +20,23 @@ class DependencyInjection():
             if input == 1:
                 ui.server_display_text.delete('1.0', 'end')
                 ui.server_display_text.insert('1.0', 'Test DB')
+                ui.db_display_text.insert('1.0', 'None selected')
+                ui.db_display_text.delete('1.0', 'end')
+
                 print('Interface connected to Test db1')
             elif input == 2:
                 ui.server_display_text.delete('1.0', 'end')
                 ui.server_display_text.insert('1.0', 'MongoDB Local')
+                ui.db_display_text.delete('1.0', 'end')
+
+                ui.db_display_text.insert('1.0', 'None selected')
                 print('Interface connected to local MongoDB')
             elif input == 3:
                 ui.server_display_text.delete('1.0', 'end')
                 ui.server_display_text.insert('1.0', 'MySQL Local')
+                ui.db_display_text.delete('1.0', 'end')
+
+                ui.db_display_text.insert('1.0', 'None selected')
                 print('Interface connected to local MySQL')
             else: 
                 # need error handling and messaging
@@ -94,6 +103,8 @@ class Results():
         pass    
 
     def display_results(self):
+        ui.db_query_text.delete('1.0', 'end')
+
         for x in self.results:
             ui.db_query_text.insert('1.0', f'{x}\n')
 
