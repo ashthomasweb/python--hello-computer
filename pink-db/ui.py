@@ -31,7 +31,7 @@ db_select_frame = ttk.Frame(gui, width= 1200, height= 40, style='Bar.TFrame')
 db_select_frame.place(x= 0, y= 0)
 
 # test commands
-T = btn(db_select_frame, text ='Test Command', width = 12, command = data.test_method)
+T = btn(db_select_frame, text ='Test Command', width = 12, command = logic.test_method)
 T.place(x=10, y=10)
 
 # DI Switch - selection buttons

@@ -1,5 +1,4 @@
 import logic
-import ui
 from traceback import format_exc
 
 # global database and cursor variables created empty at runtime
@@ -89,9 +88,7 @@ class DatabaseCaller():
 def display_current_db():
     myserver.execute('SELECT DATABASE()')
     logic.result_sender.set_database_info(myserver)
-    # for x in myserver:
-    #     ui.db_display_text.insert('1.0', f'{x}\n')
-
+  
 
 
 
