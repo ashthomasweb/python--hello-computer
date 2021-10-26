@@ -88,18 +88,14 @@ class DatabaseCaller():
 # Helper function
 def display_current_db():
     myserver.execute('SELECT DATABASE()')
-    for x in myserver:
-        ui.db_display_text.insert('1.0', f'{x}\n')
+    logic.result_sender.set_database_info(myserver)
+    # for x in myserver:
+    #     ui.db_display_text.insert('1.0', f'{x}\n')
 
 
 
 
 
-
-# Development functions - not for usage in program architecture
-def test_method():
-    print(ui.command_text.get('1.0', 'end'))
-    print('halp')
 
 
 # END of document

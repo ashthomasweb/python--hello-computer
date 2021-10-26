@@ -15,4 +15,30 @@ class GlobalCaller():
     def create_db():
         print('mongodb create!')
 
+
+
+
+class DatabaseCaller():
+
+    # read
+    def show_tables():
+        pass
+        # try:
+        #     myserver.execute("SHOW TABLES")
+        #     logic.result_sender.set_result(myserver)
+        #     logic.message_sender.set_message(f"All tables displayed below:")
+        # except BaseException:
+        #     logic.message_sender.set_message(format_exc(1))
+
+
+
+
+
+
+
+
+
+
+
+
 # END of document
