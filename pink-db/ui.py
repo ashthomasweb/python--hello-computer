@@ -19,7 +19,7 @@ s.configure('Bar.TFrame', background='light blue')
 db_select_frame = ttk.Frame(gui, width= 900, height= 40, style='Bar.TFrame')
 db_select_frame.place(x= 0, y= 0)
 
-db_frame = ttk.Frame(gui, width= 900, height= 660, style='My.TFrame')
+db_frame = ttk.Frame(gui, width= 900, height= 680, style='My.TFrame')
 db_frame['relief'] = 'raised'
 db_frame.place(x= 0, y= 40)
 db_frame.config() # What does this do?
@@ -38,29 +38,70 @@ db_oper_frame['relief'] = 'groove'
 db_oper_frame.place(x= 520, y= 10)
 
 
-# text display area
-db_display_frame = ttk.Frame(db_frame, width= 880, height= 490)
+# display area
+display_frame = ttk.Frame(db_frame, width= 880, height= 510)
+display_frame['relief'] = 'groove'
+display_frame.place(x= 10, y= 160)
+display_frame.pack_propagate(False)
+
+# text display frame
+db_query_frame = ttk.Frame(display_frame, width= 600, height= 350)
+db_query_frame['relief'] = 'groove'
+db_query_frame.place(x= 120, y= 150)
+db_query_frame.pack_propagate(False)
+
+db_query_text=Text(db_query_frame)
+db_query_text.pack(expand=True)
+# label for query
+server_title=Label(display_frame, text= "Your Query:")
+server_title.place(x= 118, y=130)
+
+# connection info display frame
+connection_display_frame = ttk.Frame(display_frame, width= 600, height= 52)
+connection_display_frame['relief'] = 'groove'
+connection_display_frame.place(x= 120, y= 10)
+connection_display_frame.pack_propagate(False)
+ # server
+server_display_frame = ttk.Frame(connection_display_frame, width= 200, height= 20)
+server_display_frame['relief'] = 'groove'
+server_display_frame.place(x= 10, y= 23)
+server_display_frame.pack_propagate(False)
+
+server_display_text=Text(server_display_frame)
+server_display_text.pack(expand=True)
+
+# label for server
+server_title=Label(connection_display_frame, text= "Server Connection")
+server_title.place(x= 8, y=3)
+
+# database
+db_display_frame = ttk.Frame(connection_display_frame, width= 370, height= 20)
 db_display_frame['relief'] = 'groove'
-db_display_frame.place(x= 10, y= 160)
+db_display_frame.place(x= 220, y= 23)
 db_display_frame.pack_propagate(False)
 
-# create text field
 db_display_text=Text(db_display_frame)
 db_display_text.pack(expand=True)
 
-# info display area
-info_display_frame = ttk.Frame(db_display_frame, width= 200, height= 20)
-info_display_frame['relief'] = 'groove'
-info_display_frame.place(x= 10, y= 10)
-info_display_frame.pack_propagate(False)
+# label for display
+db_title=Label(connection_display_frame, text= "Database")
+db_title.place(x= 218, y=3)
 
-# create text field
-info_display_text=Text(info_display_frame)
-info_display_text.pack(expand=True)
+# message display frame
+message_display_frame = ttk.Frame(display_frame, width= 600, height= 40)
+message_display_frame['relief'] = 'groove'
+message_display_frame.place(x= 120, y= 85)
+message_display_frame.pack_propagate(False)
+
+message_display_text=Text(message_display_frame)
+message_display_text.pack(expand=True)
+# label for messages
+messages_title=Label(display_frame, text= "Messages:")
+messages_title.place(x= 120, y=65)
 
 # title for section
-server_title=Label(server_oper_frame, text= "Server Operations")
-server_title.place(x=5, y=1)
+server_op_title=Label(server_oper_frame, text= "Server Operations")
+server_op_title.place(x=5, y=1)
 
 db_oper_title=Label(db_oper_frame, text= "Database Operations")
 db_oper_title.place(x= 5, y=1)
@@ -132,6 +173,6 @@ P.place(x=400, y=10)
 # main window styling options
 
 gui.title('Pink DB')
-gui.geometry('900x700')
+gui.geometry('900x720')
 
 # END of document

@@ -19,7 +19,7 @@ class GlobalCaller():
     def show_all_db():
         # set_db_server()
         myserver.execute("SHOW DATABASES")
-        ui.db_display_text.delete('1.0', 'end')
+        ui.db_query_text.delete('1.0', 'end')
         logic.result_sender.set_result(myserver)
 
     # create
@@ -39,29 +39,32 @@ def show_tables():
     myserver.execute("SHOW TABLES")
 
     for x in myserver:
-            ui.db_display_text.insert('1.0', f'{x}\n')
+            ui.db_query_text.insert('1.0', f'{x}\n')
 
 
 def sql_command():
     user_text_entry = ui.F.get()
     myserver.execute(f"{user_text_entry}")
     for x in myserver:
-            ui.db_display_text.insert('1.0', f'{x}\n')
+            ui.db_query_text.insert('1.0', f'{x}\n')
+            
+    display_current_db()
 
 
 def connect_to_db():
-    myserver.execute(f"USE {ui.F.get()}")
+    try:
+        myserver.execute(f"USE {ui.F.get()}")
+        logic.message_sender.set_message(f"Connected to database: {ui.F.get()}")
+    except BaseException as err:
+        logic.message_sender.set_message(f"{err}")
 
-    ui.db_display_text.delete('1.0', 'end')
-    ui.db_display_text.insert('1.0', f'{mydb}\n')
-    ui.db_display_text.insert('1.0', f'Connected to {ui.F.get()}\n')
     display_current_db()
 
     
 def display_current_db():
     myserver.execute('SELECT DATABASE()')
     for x in myserver:
-        ui.info_display_text.insert('1.0', f'{x}\n')
+        ui.db_display_text.insert('1.0', f'{x}\n')
 
 
 def test_method():

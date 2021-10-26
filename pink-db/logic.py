@@ -20,12 +20,17 @@ class DependencyInjection():
             # set active db to test module in DAL
             db = dal_test_db.test_db_1
             print('Interface connected to Test db1')
+            ui.server_display_text.delete('1.0', 'end')
+            ui.server_display_text.insert('1.0', 'Test DB')
         elif input == 2:
             # get credentials and set active db to local MongoDB module in DAL
             dal_mongodb.myclient = credentials.myclient
+
             # connect module caller and global interface object
             db = dal_mongodb.GlobalCaller
             print('Interface connected to local MongoDB')
+            ui.server_display_text.delete('1.0', 'end')
+            ui.server_display_text.insert('1.0', 'MongoDB Local')
         elif input == 3:
             # get credentials and set active db to local MySQL module in DAL
             dal_mysql.mydb = credentials.db
@@ -34,6 +39,8 @@ class DependencyInjection():
             # connect module caller and global interface object
             db = dal_mysql.GlobalCaller
             print('Interface connected to local MySQL')
+            ui.server_display_text.delete('1.0', 'end')
+            ui.server_display_text.insert('1.0', 'MySQL Local')
         else: 
             print('failboat sailboat')
  
@@ -65,6 +72,8 @@ class GlobalInterface():
     #     db.delete()
 
 
+# Return to UI objects
+
 class Results():
 
     results = None
@@ -74,7 +83,7 @@ class Results():
 
     def display_results(self):
         for x in self.results:
-            ui.db_display_text.insert('1.0', f'{x}\n')
+            ui.db_query_text.insert('1.0', f'{x}\n')
 
     def set_result(self, input):
         self.results = input
@@ -82,6 +91,39 @@ class Results():
 
 
 result_sender = Results()
+
+
+class Messages():
+
+    message = None
+    
+    def __init__(self):
+        pass
+
+    def display_message(self):
+        ui.message_display_text.delete('1.0', 'end')
+
+        # for x in self.message:
+        ui.message_display_text.insert('1.0', f'{self.message}')
+        
+    def set_message(self, input):
+         self.message = input
+         self.display_message()
+
+
+message_sender = Messages()
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # END of document
