@@ -67,14 +67,8 @@ G.place(x= 10, y= 25)
 L = btn(server_oper_frame, text ='View All DB', command = logic.GlobalInterface.show_all_db)
 L.place(x= 80, y= 25)
 
-I = btn(server_oper_frame, text ='Connect to:', command = data.connect_to_db)
+I = btn(server_oper_frame, text ='Connect to:', command = logic.GlobalInterface.connect_to_db)
 I.place(x=160, y= 25)
-
-
-
-
-
-
 
 # User Input
 # frame
@@ -89,10 +83,8 @@ F = tkinter.Entry(entry_frame, width= 66 )
 F.place(x=10, y=30)
 
 # run command button
-J = btn(entry_frame, text ='Run\nCommand', height =2, width = 8, command = data.sql_command)
+J = btn(entry_frame, text ='Run\nCommand', height =2, width = 8, command = logic.GlobalInterface.run_command)
 J.place(x=425, y=10)
-
-
 
 # Database operations (intra-database CRUD)
 # frame
@@ -103,7 +95,7 @@ db_oper_title=Label(db_oper_frame, text= "Database Operations")
 db_oper_title.place(x= 5, y=1)
 
 # operations buttons
-K = btn(db_oper_frame, text ='Show Tables', command = data.show_tables)
+K = btn(db_oper_frame, text ='Show Tables', command = logic.DatabaseInterface.show_tables)
 K.place(x=10, y=25)
 
 # DISPLAY SECTIONS
@@ -158,24 +150,6 @@ db_query_text=Text(db_query_frame)
 db_query_text.pack(expand=True)
 query_title=Label(display_frame, text= "Your Query:")
 query_title.place(x= 118, y=130)
-
-
-
-# # TEST CRUD
-# M = btn(db_frame, text ='Interface Create', command = logic.GlobalInterface.create_test)
-# M.place(x=100, y=162)
-
-# Q = btn(db_frame, text ='Interface Read', command = logic.GlobalInterface.read_test)
-# Q.place(x=200, y=162)
-
-# R = btn(db_frame, text ='Interface Update', command = logic.GlobalInterface.update_test)
-# R.place(x=300, y=162)
-
-# S = btn(db_frame, text ='Interface Delete', command = logic.GlobalInterface.delete_test)
-# S.place(x=400, y=162)
-# # TEST CRUD
-
-
 
 
 # END of document

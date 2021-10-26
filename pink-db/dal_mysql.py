@@ -17,16 +17,14 @@ def set_db_server():
 
 class GlobalCaller():
 
+    # read
     def show_all_db():
-        # set_db_server()
         try:
             myserver.execute("SHOW DATABASES")
             logic.result_sender.set_result(myserver)
             logic.message_sender.set_message(f"All databases on server:")
-
         except BaseException as err:
             logic.message_sender.set_message(f"{err}")
-
 
     # create
     def create_db():
@@ -34,55 +32,54 @@ class GlobalCaller():
 
     # delete
 
+    # make db connection
+    def connect_to_db():
+        try:
+            myserver.execute(f"USE {entry()}")
+            logic.message_sender.set_message(f"Connected to database: {entry()}")
+        except BaseException as err:
+            logic.message_sender.set_message(f"{err}")
+
+        display_current_db()
+
+    # run language-specific command
+    def run_command():
+        myserver.execute(f"{entry()}")
+        for x in myserver:
+            ui.db_query_text.insert('1.0', f'{x}\n')
+                
+        display_current_db()
 
 
 
 
-# STILL NEEDS INTERFACE! 
-def show_tables():
+class DatabaseCaller():
 
-    myserver.execute("SHOW TABLES")
+    # read
+    def show_tables():
 
-    for x in myserver:
-        ui.db_query_text.insert('1.0', f'{x}\n')
+        myserver.execute("SHOW TABLES")
 
-
-def sql_command():
-    myserver.execute(f"{entry()}")
-    for x in myserver:
-        ui.db_query_text.insert('1.0', f'{x}\n')
-            
-    display_current_db()
-
-def connect_to_db():
-    try:
-        myserver.execute(f"USE {entry()}")
-        logic.message_sender.set_message(f"Connected to database: {entry()}")
-    except BaseException as err:
-        logic.message_sender.set_message(f"{err}")
-
-    display_current_db()
+        for x in myserver:
+            ui.db_query_text.insert('1.0', f'{x}\n')
 
 
-    
+
+
+# Helper function
 def display_current_db():
     myserver.execute('SELECT DATABASE()')
     for x in myserver:
         ui.db_display_text.insert('1.0', f'{x}\n')
 
 
+
+
+
+
+# Development functions - not for usage in program architecture
 def test_method():
     print('halp')
 
-
-
-
-
-# test/development
-# def display_cursor():
-#     for x in mycursor:
-#             ui.db_display_text.insert('1.0', f'{x}\n')
-
-#     ui.db_display_text.insert('1.0', f'{mydb}\n')
 
 # END of document

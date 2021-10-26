@@ -5,38 +5,40 @@ import dal_mongodb
 import dal_test_db
 import credentials
 
-db = None
+serv_op = None
+db_op = None
 mydb = None
 
 class DependencyInjection():
 
-    global db
+    global serv_op
+    global db_op
+
 
     def switch(input):
-        global db
+        global serv_op
+        global db_op
+
         global mydb
 
         def server_display_handling(input):
-            if input == 1:
-                ui.server_display_text.delete('1.0', 'end')
-                ui.server_display_text.insert('1.0', 'Test DB')
-                ui.db_display_text.insert('1.0', 'None selected')
-                ui.db_display_text.delete('1.0', 'end')
 
+            def clear_field():
+                ui.server_display_text.delete('1.0', 'end')
+                ui.db_display_text.delete('1.0', 'end')
+                ui.db_display_text.insert('1.0', 'None selected')
+
+            if input == 1:
+                clear_field()
+                ui.server_display_text.insert('1.0', 'Test DB')
                 print('Interface connected to Test db1')
             elif input == 2:
-                ui.server_display_text.delete('1.0', 'end')
+                clear_field()
                 ui.server_display_text.insert('1.0', 'MongoDB Local')
-                ui.db_display_text.delete('1.0', 'end')
-
-                ui.db_display_text.insert('1.0', 'None selected')
                 print('Interface connected to local MongoDB')
             elif input == 3:
-                ui.server_display_text.delete('1.0', 'end')
+                clear_field()
                 ui.server_display_text.insert('1.0', 'MySQL Local')
-                ui.db_display_text.delete('1.0', 'end')
-
-                ui.db_display_text.insert('1.0', 'None selected')
                 print('Interface connected to local MySQL')
             else: 
                 # need error handling and messaging
@@ -46,25 +48,27 @@ class DependencyInjection():
 
         if input == 1:
             # set active db to test module in DAL
-            db = dal_test_db.test_db_1
+            serv_op = dal_test_db.test_db_1
         elif input == 2:
             # get credentials and set active db to local MongoDB module in DAL
             dal_mongodb.myclient = credentials.myclient
             # connect module caller and global interface object
-            db = dal_mongodb.GlobalCaller
+            serv_op = dal_mongodb.GlobalCaller
+            db_op = dal_mongodb.DatabaseCaller
+
         elif input == 3:
             # get credentials and set active db to local MySQL module in DAL
             dal_mysql.mydb = credentials.db
             # set db server/query variable in DAL
             dal_mysql.set_db_server()
             # connect module caller and global interface object
-            db = dal_mysql.GlobalCaller
+            serv_op = dal_mysql.GlobalCaller
+            db_op = dal_mysql.DatabaseCaller
+
         else: 
             # need error handling and messaging
             print('failboat sailboat')
  
-
-
 
 # db set by DI
 # called from ui
@@ -72,29 +76,31 @@ class DependencyInjection():
 class GlobalInterface():
 
     def show_all_db():
-        db.show_all_db()
+        serv_op.show_all_db()
 
     def create_db():
-        db.create_db()
+        serv_op.create_db()
+
+    def connect_to_db():
+        serv_op.connect_to_db()
+
+    def run_command():
+        serv_op.run_command()
 
 
 
-    # # mock CRUD operations 
-    # def create_test():
-    #     db.create()
 
-    # def read_test():
-    #     db.read()
+class DatabaseInterface():
 
-    # def update_test():
-    #     db.update()
-
-    # def delete_test():
-    #     db.delete()
+    def show_tables():
+        db_op.show_tables()
 
 
-# Return to UI objects
 
+
+# WORKER CLASSES
+
+# Sends query results
 class Results():
 
     results = None
@@ -112,10 +118,8 @@ class Results():
         self.results = input
         self.display_results()
 
-result_sender = Results()
 
-
-
+# Displays system messages and error reporting
 class Messages():
 
     message = None
@@ -125,19 +129,14 @@ class Messages():
 
     def display_message(self):
         ui.message_display_text.delete('1.0', 'end')
-
-        # for x in self.message:
         ui.message_display_text.insert('1.0', f'{self.message}')
         
     def set_message(self, input):
          self.message = input
          self.display_message()
 
-message_sender = Messages()
 
-
-# Need user entry object
-
+# Returns user input from text field
 class UserEntry():
 
     entry = None
@@ -150,16 +149,11 @@ class UserEntry():
         return self.entry
 
 
+
+# WORKER OBJECTS
+result_sender = Results()
+message_sender = Messages()
 entry_getter = UserEntry()
-
-
-
-
-
-
-
-
-
 
 
 
