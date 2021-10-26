@@ -4,6 +4,7 @@ import dal_mysql
 import dal_mongodb
 import dal_test_db
 import credentials
+from traceback import format_exc
 
 serv_op = None
 db_op = None

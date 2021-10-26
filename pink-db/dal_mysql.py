@@ -1,5 +1,6 @@
 import logic
 import ui
+from traceback import format_exc
 
 # global database and cursor variables created empty at runtime
 mydb = None # set by DependencyInjection
@@ -25,8 +26,8 @@ class GlobalCaller():
             myserver.execute("SHOW DATABASES")
             logic.result_sender.set_result(myserver)
             logic.message_sender.set_message(f"Succesful creation of new database: {entry()}")
-        except BaseException as err:
-            logic.message_sender.set_message(f"{err}")
+        except BaseException:
+            logic.message_sender.set_message(format_exc(1))
 
     # read
     def show_all_db():
@@ -34,8 +35,8 @@ class GlobalCaller():
             myserver.execute("SHOW DATABASES")
             logic.result_sender.set_result(myserver)
             logic.message_sender.set_message(f"All databases on server:")
-        except BaseException as err:
-            logic.message_sender.set_message(f"{err}")
+        except BaseException:
+            logic.message_sender.set_message(format_exc(1))
 
     # update
 
@@ -48,8 +49,8 @@ class GlobalCaller():
             myserver.execute("SHOW TABLES")
             logic.result_sender.set_result(myserver)
             logic.message_sender.set_message(f"Connected to database: {entry()}\nAll contents (if any) displayed below:")
-        except BaseException as err:
-            logic.message_sender.set_message(f"{err}")
+        except BaseException:
+            logic.message_sender.set_message(format_exc(1))
 
         display_current_db()
 
@@ -59,8 +60,8 @@ class GlobalCaller():
             myserver.execute(f"{entry()}")
             logic.result_sender.set_result(myserver)
             logic.message_sender.set_message(f"Results (if any) of custom command displayed below:")
-        except BaseException as err:
-            logic.message_sender.set_message(f"{err}")
+        except BaseException:
+            logic.message_sender.set_message(format_exc(1))
 
         display_current_db()
 
@@ -75,9 +76,9 @@ class DatabaseCaller():
             myserver.execute("SHOW TABLES")
             logic.result_sender.set_result(myserver)
             logic.message_sender.set_message(f"All tables displayed below:")
-        except BaseException as err:
-            logic.message_sender.set_message(f"{err}")
-        
+        except BaseException:
+            logic.message_sender.set_message(format_exc(1))
+
 
 
 
