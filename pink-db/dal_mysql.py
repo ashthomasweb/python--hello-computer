@@ -7,6 +7,7 @@ myserver = None # set by DAL GlobalCaller
 
 
 entry = lambda: logic.entry_getter.get_entry()
+entry_trunc = lambda: logic.entry_getter.get_entry_trunc()
 
 # called from logic layer
 def set_db_server():
@@ -40,6 +41,14 @@ class GlobalCaller():
     # update
 
     # delete
+    def delete_db():
+        try:
+            myserver.execute(f"DROP DATABASE {entry()}")
+            myserver.execute("SHOW DATABASES")
+            logic.result_sender.set_result(myserver)
+            logic.message_sender.set_message(f"Succesfully dropped database: {entry()}")
+        except BaseException:
+            logic.message_sender.set_message(format_exc(1))
 
     # make db connection
     def connect_to_db():
@@ -69,6 +78,14 @@ class GlobalCaller():
 
 class DatabaseCaller():
 
+    def create_table():
+        try:
+            myserver.execute(f"CREATE TABLE {entry()} (id INT)")
+            logic.result_sender.set_result(myserver)
+            logic.message_sender.set_message(f"Empty table '{entry_trunc()}' created:")
+        except BaseException:
+            logic.message_sender.set_message(format_exc(1))
+
     # read
     def show_tables():
         try:
@@ -78,6 +95,10 @@ class DatabaseCaller():
         except BaseException:
             logic.message_sender.set_message(format_exc(1))
 
+    # # update - NEEDS SECOND INPUT FIELD
+    # def rename_table():
+    #     try:
+    #         myserver.execute("RENAME TABLE old_table TO new_table;")
 
 
 

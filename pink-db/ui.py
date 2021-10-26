@@ -67,6 +67,9 @@ G.place(x= 10, y= 25)
 L = btn(server_oper_frame, text ='View All DB', command = logic.GlobalInterface.show_all_db)
 L.place(x= 80, y= 25)
 
+M = btn(server_oper_frame, text ='Drop DB', command = logic.GlobalInterface.delete_db)
+M.place(x= 165, y= 25)
+
 I = btn(server_oper_frame, text ='Connect to:', command = logic.GlobalInterface.connect_to_db)
 I.place(x=10, y= 60)
 
@@ -80,8 +83,11 @@ db_oper_title=Label(db_oper_frame, text= "Database Operations")
 db_oper_title.place(x= 5, y=1)
 
 # operations buttons
+J = btn(db_oper_frame, text ='Create Table', height =1, width = 12, command = logic.DatabaseInterface.create_table)
+J.place(x=10, y=25)
+
 K = btn(db_oper_frame, text ='Show Tables', command = logic.DatabaseInterface.show_tables)
-K.place(x=10, y=25)
+K.place(x=110, y=25)
 
 # DISPLAY SECTIONS
 

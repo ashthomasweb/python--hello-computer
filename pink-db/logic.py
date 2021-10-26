@@ -60,6 +60,9 @@ class GlobalInterface():
     def create_db():
         serv_op.create_db()
 
+    def delete_db():
+        serv_op.delete_db()
+
     def connect_to_db():
         serv_op.connect_to_db()
 
@@ -71,6 +74,9 @@ class GlobalInterface():
 
 class DatabaseInterface():
 
+    def create_table():
+        db_op.create_table()
+    
     def show_tables():
         db_op.show_tables()
 
@@ -148,6 +154,11 @@ class UserEntry():
     def get_entry(self):
         self.entry = ui.command_text.get('1.0','end')
         return self.entry
+
+    def get_entry_trunc(self):
+        self.entry = ui.command_text.get('1.0','end-1c')
+        return self.entry
+
 
 
 
