@@ -101,8 +101,8 @@ class Results():
         self.results = input
         self.display_results()
 
-
 result_sender = Results()
+
 
 
 class Messages():
@@ -122,10 +122,24 @@ class Messages():
          self.message = input
          self.display_message()
 
-
 message_sender = Messages()
 
 
+# Need user entry object
+
+class UserEntry():
+
+    entry = None
+
+    def __init__(self):
+        pass
+
+    def get_entry(self):
+        self.entry = ui.F.get()
+        return self.entry
+
+
+entry_getter = UserEntry()
 
 
 

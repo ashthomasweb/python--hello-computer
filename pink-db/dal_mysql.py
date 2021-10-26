@@ -7,6 +7,8 @@ myserver = None # set by DAL GlobalCaller
 
 user_text_entry = ""
 
+entry = lambda: logic.entry_getter.get_entry()
+
 def set_db_server():
     global myserver
     global mydb
@@ -52,7 +54,7 @@ def sql_command():
 
 def connect_to_db():
     try:
-        myserver.execute(f"USE {ui.F.get()}")
+        myserver.execute(f"USE {entry()}")
         logic.message_sender.set_message(f"Connected to database: {ui.F.get()}")
     except BaseException as err:
         logic.message_sender.set_message(f"{err}")
