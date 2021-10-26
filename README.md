@@ -1,4 +1,4 @@
-> A Melodic Trainer, Tempo Trainer, and Music Generator featuring multiple instrument sounds.
+> A Desktop Application utilizing Dependency Injection, Software Interfaces, and Layered Architecture. Built for extensibility. In-development.
 
 # Project Name
 "Pink DB"
