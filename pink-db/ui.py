@@ -98,6 +98,9 @@ update_table_to.place(x= 114, y= 60, width= 150, height = 26)
 R = btn(db_oper_frame, text ='Delete Table', command = logic.DatabaseInterface.delete_table)
 R.place(x= 190, y= 25)
 
+S = btn(db_oper_frame, text ='View Table', command = logic.DatabaseInterface.view_table)
+S.place(x= 260, y= 25)
+
 # DISPLAY SECTIONS
 
 # Command area parent frame

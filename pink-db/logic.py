@@ -86,6 +86,11 @@ class DatabaseInterface():
     def delete_table():
         db_op.delete_table()
 
+    def view_table():
+        db_op.view_table()
+
+        
+
 
 
 # WORKER CLASSES

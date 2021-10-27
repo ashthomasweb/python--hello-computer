@@ -97,6 +97,15 @@ class DatabaseCaller():
         except BaseException:
             logic.message_sender.set_message(format_exc(1))
 
+    def view_table():
+        try:
+            myserver.execute("SHOW TABLES")
+            logic.result_sender.set_result(myserver)
+            logic.message_sender.set_message(f"All tables displayed below:")
+        except BaseException:
+            logic.message_sender.set_message(format_exc(1))
+
+            
     # update 
     def rename_table():
         try:
