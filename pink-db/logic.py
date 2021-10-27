@@ -89,7 +89,12 @@ class DatabaseInterface():
     def view_table():
         db_op.view_table()
 
-        
+    def view_columns():
+        db_op.view_col_names()
+
+    def cross_columns():
+        db_op.cross_columns()
+    
 
 
 
@@ -108,6 +113,7 @@ class Results():
         pass    
 
     def display_results(self):
+        
         ui.db_query_text.delete('1.0', 'end')
         for x in self.results:
             ui.db_query_text.insert('1.0', f'{x}\n')
@@ -128,12 +134,21 @@ class Results():
     def display_database(self):
         ui.db_display_text.delete('1.0', 'end')
         for x in self.database:
-            ui.db_display_text.insert('1.0', f'{x}\n')
-            print(f'Interface connected to {x}')
-
+            ui.db_display_text.insert('1.0', f'{x}')
+        str = ui.db_display_text.get('1.0', 'end')
+        disallowed_characters = "(),"
+        for character in disallowed_characters:
+            str = str.replace(character, "")
+        ui.db_display_text.delete('1.0', 'end')
+        ui.db_display_text.insert('1.0', f'{str}')
+            
     def set_database_info(self, input):
         self.database = input
         self.display_database()
+
+    # unclear seperation of concerns...
+    def get_database_name(self):
+        return ui.db_display_text.get('1.0', 'end-1c')
 
 
 # Displays system messages and error reporting
@@ -157,6 +172,8 @@ class Messages():
 class UserEntry():
 
     entry = None
+    cross1 = None
+    cross2 = None
 
     def __init__(self):
         pass
@@ -173,6 +190,14 @@ class UserEntry():
         self.entry = ui.update_table_to.get()
         return self.entry
 
+    def get_cross1(self):
+        self.cross1 = ui.cross_col1.get()
+        return self.cross1
+    
+    def get_cross2(self):
+        self.cross2 = ui.cross_col2.get()
+        return self.cross2
+    
 
 
 # WORKER OBJECTS
@@ -185,8 +210,8 @@ entry_getter = UserEntry()
 # Development functions - not for usage in program architecture
 def test_method():
     # print(ui.command_text.get('1.0', 'end'))
-    print(ui.update_table_to.get())
-    print('halp')
+    print(type(result_sender.results))
+    # print(ui.update_table_to.get())
 
 
 

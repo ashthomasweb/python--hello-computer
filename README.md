@@ -35,7 +35,8 @@ This is a simple database query desktop application. Project is in development. 
 * Generate To-do list
 
 ## Known Issues 
-* Incomplete
+* MySQL results object is non-reversible and non-subscriptable. Displays results upside down, needs to be reversed somehow.
+* SQL data display is not in a table format. Difficult to do with limited tKinter interface. Layered design will allow for easy implementation of improved ui in the future. 
 
 ## Status
 Project is: _in development_.

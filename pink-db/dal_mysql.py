@@ -9,6 +9,10 @@ myserver = None # set by DAL GlobalCaller
 entry = lambda: logic.entry_getter.get_entry()
 entry_trunc = lambda: logic.entry_getter.get_entry_trunc()
 get_update_table = lambda: logic.entry_getter.get_update_table()
+db_name = lambda: logic.result_sender.get_database_name()
+cross_1 = lambda: logic.entry_getter.get_cross1()
+cross_2 = lambda: logic.entry_getter.get_cross2()
+
 
 # called from logic layer
 def set_db_server():
@@ -99,13 +103,29 @@ class DatabaseCaller():
 
     def view_table():
         try:
-            myserver.execute("SHOW TABLES")
+            myserver.execute(f"SELECT * FROM {entry()}")
             logic.result_sender.set_result(myserver)
-            logic.message_sender.set_message(f"All tables displayed below:")
+            logic.message_sender.set_message(f"All table data displayed below:")
         except BaseException:
             logic.message_sender.set_message(format_exc(1))
 
-            
+    def view_col_names():
+        try:
+            myserver.execute(f"SELECT COLUMN_NAME  FROM INFORMATION_SCHEMA.COLUMNS  WHERE TABLE_SCHEMA = {db_name()} AND TABLE_NAME = '{entry_trunc()}'")
+            logic.result_sender.set_result(myserver)
+            logic.message_sender.set_message(f"All columns in {entry_trunc()} displayed below:")
+        except BaseException:
+            logic.message_sender.set_message(format_exc(1))
+
+    def cross_columns():
+        try:
+            myserver.execute(f"SELECT {cross_1()}, {cross_2()} FROM {entry_trunc()}")
+            logic.result_sender.set_result(myserver)
+            logic.message_sender.set_message(f"Reference {cross_1()} by {cross_2()} below:")
+        except BaseException:
+            logic.message_sender.set_message(format_exc(1))
+
+
     # update 
     def rename_table():
         try:

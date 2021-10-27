@@ -83,23 +83,36 @@ db_oper_title=Label(db_oper_frame, text= "Database Operations")
 db_oper_title.place(x= 5, y=1)
 
 # operations buttons
-J = btn(db_oper_frame, text ='Create Table', height =1, width = 12, command = logic.DatabaseInterface.create_table)
+J = btn(db_oper_frame, text ='Create Table', height =1, width = 11, command = logic.DatabaseInterface.create_table)
 J.place(x=10, y=25)
 
-K = btn(db_oper_frame, text ='All Tables', command = logic.DatabaseInterface.show_all_tables)
-K.place(x=110, y=25)
+K = btn(db_oper_frame, text ='All Tables', width= 11, command = logic.DatabaseInterface.show_all_tables)
+K.place(x=190, y=25)
 
 Q = btn(db_oper_frame, text ='Rename Table To:', command = logic.DatabaseInterface.rename_table)
 Q.place(x= 10, y= 60)
 
 update_table_to = tkinter.Entry(db_oper_frame)
-update_table_to.place(x= 114, y= 60, width= 150, height = 26)
+update_table_to.place(x= 114, y= 60, width= 155, height = 26)
 
-R = btn(db_oper_frame, text ='Delete Table', command = logic.DatabaseInterface.delete_table)
-R.place(x= 190, y= 25)
+R = btn(db_oper_frame, text ='Delete Table', width= 11, command = logic.DatabaseInterface.delete_table)
+R.place(x= 100, y= 25)
 
-S = btn(db_oper_frame, text ='View Table', command = logic.DatabaseInterface.view_table)
-S.place(x= 260, y= 25)
+S = btn(db_oper_frame, text ='View Table', width= 11, command = logic.DatabaseInterface.view_table)
+S.place(x= 280, y= 25)
+
+T = btn(db_oper_frame, text ='View Columns', command = logic.DatabaseInterface.view_columns)
+T.place(x= 370, y= 25)
+
+U = btn(db_oper_frame, text ='Cross Ref:', command = logic.DatabaseInterface.cross_columns)
+U.place(x= 277, y= 60)
+
+cross_col1 = tkinter.Entry(db_oper_frame)
+cross_col1.place(x= 340, y= 60, width= 100, height = 26)
+
+cross_col2 = tkinter.Entry(db_oper_frame)
+cross_col2.place(x= 440, y= 60, width= 100, height = 26)
+
 
 # DISPLAY SECTIONS
 
@@ -178,7 +191,7 @@ db_query_frame = ttk.Frame(query_frame, width= 600, height= 389)
 db_query_frame['relief'] = 'groove'
 db_query_frame.place(x= 10, y= 90)
 db_query_frame.pack_propagate(False)
-db_query_text=Text(db_query_frame)
+db_query_text=Text(db_query_frame, wrap=WORD)
 db_query_text.pack(expand=True)
 query_title=Label(query_frame, text= "Your Query:")
 query_title.place(x= 8, y=70)
