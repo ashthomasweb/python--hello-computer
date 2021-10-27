@@ -8,6 +8,7 @@ myserver = None # set by DAL GlobalCaller
 
 entry = lambda: logic.entry_getter.get_entry()
 entry_trunc = lambda: logic.entry_getter.get_entry_trunc()
+get_update_table = lambda: logic.entry_getter.get_update_table()
 
 # called from logic layer
 def set_db_server():
@@ -81,13 +82,14 @@ class DatabaseCaller():
     def create_table():
         try:
             myserver.execute(f"CREATE TABLE {entry()} (id INT)")
+            myserver.execute("SHOW TABLES")
             logic.result_sender.set_result(myserver)
             logic.message_sender.set_message(f"Empty table '{entry_trunc()}' created:")
         except BaseException:
             logic.message_sender.set_message(format_exc(1))
 
     # read
-    def show_tables():
+    def show_all_tables():
         try:
             myserver.execute("SHOW TABLES")
             logic.result_sender.set_result(myserver)
@@ -95,11 +97,25 @@ class DatabaseCaller():
         except BaseException:
             logic.message_sender.set_message(format_exc(1))
 
-    # # update - NEEDS SECOND INPUT FIELD
-    # def rename_table():
-    #     try:
-    #         myserver.execute("RENAME TABLE old_table TO new_table;")
+    # update 
+    def rename_table():
+        try:
+            myserver.execute(f"RENAME TABLE {entry()} TO {get_update_table()}")
+            myserver.execute("SHOW TABLES")
+            logic.result_sender.set_result(myserver)
+            logic.message_sender.set_message(f"Table name successfully updated. All tables displayed below:")
+        except BaseException:
+            logic.message_sender.set_message(format_exc(1))
 
+    # delete
+    def delete_table():
+        try:
+            myserver.execute(f"DROP TABLE {entry()}")
+            myserver.execute("SHOW TABLES")
+            logic.result_sender.set_result(myserver)
+            logic.message_sender.set_message(f"Table successfully deleted. All tables displayed below:")
+        except BaseException:
+            logic.message_sender.set_message(format_exc(1))
 
 
 

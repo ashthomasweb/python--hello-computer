@@ -77,9 +77,14 @@ class DatabaseInterface():
     def create_table():
         db_op.create_table()
     
-    def show_tables():
-        db_op.show_tables()
+    def show_all_tables():
+        db_op.show_all_tables()
 
+    def rename_table():
+        db_op.rename_table()
+
+    def delete_table():
+        db_op.delete_table()
 
 
 
@@ -159,6 +164,9 @@ class UserEntry():
         self.entry = ui.command_text.get('1.0','end-1c')
         return self.entry
 
+    def get_update_table(self):
+        self.entry = ui.update_table_to.get()
+        return self.entry
 
 
 
@@ -172,6 +180,7 @@ entry_getter = UserEntry()
 # Development functions - not for usage in program architecture
 def test_method():
     # print(ui.command_text.get('1.0', 'end'))
+    print(ui.update_table_to.get())
     print('halp')
 
 

@@ -86,8 +86,17 @@ db_oper_title.place(x= 5, y=1)
 J = btn(db_oper_frame, text ='Create Table', height =1, width = 12, command = logic.DatabaseInterface.create_table)
 J.place(x=10, y=25)
 
-K = btn(db_oper_frame, text ='Show Tables', command = logic.DatabaseInterface.show_tables)
+K = btn(db_oper_frame, text ='All Tables', command = logic.DatabaseInterface.show_all_tables)
 K.place(x=110, y=25)
+
+Q = btn(db_oper_frame, text ='Rename Table To:', command = logic.DatabaseInterface.rename_table)
+Q.place(x= 10, y= 60)
+
+update_table_to = tkinter.Entry(db_oper_frame)
+update_table_to.place(x= 114, y= 60, width= 150, height = 26)
+
+R = btn(db_oper_frame, text ='Delete Table', command = logic.DatabaseInterface.delete_table)
+R.place(x= 190, y= 25)
 
 # DISPLAY SECTIONS
 
@@ -107,6 +116,7 @@ enter_title.place(x= 10, y=3)
 # command field
 command_text=Text(command_frame)
 command_text.place(x=10, y=25, width= 530, height= 420)
+
 
 # run command button
 J = btn(command_frame, text ='Run Command', height =1, width = 12, command = logic.GlobalInterface.run_command)
@@ -169,6 +179,7 @@ db_query_text=Text(db_query_frame)
 db_query_text.pack(expand=True)
 query_title=Label(query_frame, text= "Your Query:")
 query_title.place(x= 8, y=70)
+
 
 
 # END of document
