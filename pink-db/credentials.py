@@ -1,5 +1,5 @@
 
-import pymongo
+from pymongo import MongoClient
 import mysql.connector
 
 class Database():
@@ -16,7 +16,7 @@ db = Database()
 
 # MongoDB Client
 
-myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+myclient = MongoClient("mongodb://localhost:27017/")
 
 
 # END of document

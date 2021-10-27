@@ -9,6 +9,7 @@ import tkinter.simpledialog
 # import software layers
 import logic
 import dal_mysql as data
+import dal_mongodb
 
 # UI common object variable assignment
 gui = tkinter.Tk()
@@ -31,7 +32,7 @@ db_select_frame = ttk.Frame(gui, width= 1200, height= 40, style='Bar.TFrame')
 db_select_frame.place(x= 0, y= 0)
 
 # test commands
-T = btn(db_select_frame, text ='Test Command', width = 12, command = logic.test_method)
+T = btn(db_select_frame, text ='Test Command', width = 12, command = dal_mongodb.test_method)
 T.place(x=10, y=10)
 
 # DI Switch - selection buttons
@@ -61,16 +62,16 @@ server_op_title=Label(server_oper_frame, text= "Server Operations")
 server_op_title.place(x=5, y=1)
 
 # Global Operations Interface
-G = btn(server_oper_frame, text ='Create DB', command = logic.GlobalInterface.create_db)
+G = btn(server_oper_frame, text ='Create DB', width=11, command = logic.GlobalInterface.create_db)
 G.place(x= 10, y= 25)
 
-L = btn(server_oper_frame, text ='View All DB', command = logic.GlobalInterface.show_all_db)
-L.place(x= 80, y= 25)
+L = btn(server_oper_frame, text ='View All DB', width=11, command = logic.GlobalInterface.show_all_db)
+L.place(x= 100, y= 25)
 
-M = btn(server_oper_frame, text ='Drop DB', command = logic.GlobalInterface.delete_db)
-M.place(x= 165, y= 25)
+M = btn(server_oper_frame, text ='Drop DB', width=11, command = logic.GlobalInterface.delete_db)
+M.place(x= 190, y= 25)
 
-I = btn(server_oper_frame, text ='Connect to:', command = logic.GlobalInterface.connect_to_db)
+I = btn(server_oper_frame, text ='Connect to:', width=11, command = logic.GlobalInterface.connect_to_db)
 I.place(x=10, y= 60)
 
 
@@ -82,18 +83,13 @@ db_oper_frame.place(x= 10, y= 115)
 db_oper_title=Label(db_oper_frame, text= "Database Operations")
 db_oper_title.place(x= 5, y=1)
 
-# operations buttons
+# operations buttons - row 1
 J = btn(db_oper_frame, text ='Create Table', height =1, width = 11, command = logic.DatabaseInterface.create_table)
 J.place(x=10, y=25)
 
 K = btn(db_oper_frame, text ='All Tables', width= 11, command = logic.DatabaseInterface.show_all_tables)
 K.place(x=190, y=25)
 
-Q = btn(db_oper_frame, text ='Rename Table To:', command = logic.DatabaseInterface.rename_table)
-Q.place(x= 10, y= 60)
-
-update_table_to = tkinter.Entry(db_oper_frame)
-update_table_to.place(x= 114, y= 60, width= 155, height = 26)
 
 R = btn(db_oper_frame, text ='Delete Table', width= 11, command = logic.DatabaseInterface.delete_table)
 R.place(x= 100, y= 25)
@@ -103,6 +99,13 @@ S.place(x= 280, y= 25)
 
 T = btn(db_oper_frame, text ='View Columns', command = logic.DatabaseInterface.view_columns)
 T.place(x= 370, y= 25)
+
+# operations buttons - row 2
+Q = btn(db_oper_frame, text ='Rename Table To:', command = logic.DatabaseInterface.rename_table)
+Q.place(x= 10, y= 60)
+
+update_table_to = tkinter.Entry(db_oper_frame)
+update_table_to.place(x= 114, y= 60, width= 155, height = 26)
 
 U = btn(db_oper_frame, text ='Cross Ref:', command = logic.DatabaseInterface.cross_columns)
 U.place(x= 277, y= 60)
@@ -122,17 +125,13 @@ command_frame['relief'] = 'groove'
 command_frame.place(x= 10, y= 220)
 command_frame.pack_propagate(False)
 
-# User Input
 # frame
 entry_frame = ttk.Frame(command_frame, width= 546, height= 478)
 entry_frame.place(x= 1, y= 1)
 enter_title=Label(command_frame, text= "Enter a value or command below:")
 enter_title.place(x= 10, y=3)
-
-# command field
 command_text=Text(command_frame)
 command_text.place(x=10, y=25, width= 530, height= 420)
-
 
 # run command button
 J = btn(command_frame, text ='Run Command', height =1, width = 12, command = logic.GlobalInterface.run_command)
@@ -176,7 +175,6 @@ message_wrapper_frame = ttk.Frame(operations_frame, width= 620, height= 200)
 message_wrapper_frame['relief'] = 'groove'
 message_wrapper_frame.place(x= 570, y= 10)
 message_wrapper_frame.pack_propagate(False)
-
 message_display_frame = ttk.Frame(message_wrapper_frame, width= 600, height= 165)
 message_display_frame['relief'] = 'groove'
 message_display_frame.place(x= 10, y= 25)

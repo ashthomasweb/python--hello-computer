@@ -14,12 +14,13 @@ class DependencyInjection():
 
     global serv_op
     global db_op
-
+    global var_name
 
     def switch(input):
         global serv_op
         global db_op
         global mydb
+        global var_name
 
         if input == 1:
             # set active db to test module in DAL
@@ -27,6 +28,7 @@ class DependencyInjection():
             # set connection info display
             result_sender.set_server_info('Test DB')
         elif input == 2:
+            var_name = "Coll"
             # get credentials and set active db to local MongoDB module in DAL
             dal_mongodb.myclient = credentials.myclient
             # connect global and database caller to interface
@@ -35,6 +37,8 @@ class DependencyInjection():
             # set connection info display
             result_sender.set_server_info('MongoDB Local')
         elif input == 3:
+            var_name = "Table"
+
             # get credentials and set active db to local MySQL module in DAL
             dal_mysql.mydb = credentials.db
             # set db server/query variable in DAL
@@ -207,11 +211,6 @@ entry_getter = UserEntry()
 
 
 
-# Development functions - not for usage in program architecture
-def test_method():
-    # print(ui.command_text.get('1.0', 'end'))
-    print(type(result_sender.results))
-    # print(ui.update_table_to.get())
 
 
 
