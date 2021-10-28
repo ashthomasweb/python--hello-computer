@@ -1,4 +1,4 @@
-# Main application file for "PinkDB"
+# Main application file for "MetaQueryDB"
 import ui
 
 # run program

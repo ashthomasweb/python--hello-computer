@@ -79,8 +79,6 @@ class GlobalCaller():
         display_current_db()
 
 
-
-
 class DatabaseCaller():
 
     def create_table():
@@ -147,18 +145,11 @@ class DatabaseCaller():
             logic.message_sender.set_message(format_exc(1))
 
 
-
-
-
 # Helper function
 def display_current_db():
     myserver.execute('SELECT DATABASE()')
     logic.result_sender.set_database_info(myserver)
   
-
-
-
-
 
 
 # END of document

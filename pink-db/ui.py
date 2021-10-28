@@ -18,10 +18,10 @@ btn = tkinter.Button
 # frame styling
 s = ttk.Style()
 s.configure('My.TFrame', background='pink')
-s.configure('Bar.TFrame', background='light blue')
+s.configure('Bar.TFrame', background='dark grey')
 
 # main window styling options
-gui.title('Pink DB')
+gui.title('MetaQuery DB')
 gui.geometry('1200x800')
 
 # COMMAND SECTIONS
