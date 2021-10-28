@@ -24,6 +24,7 @@ This is a simple database query desktop application. Not designed for extensive 
 ## Technologies
 * Python 3
 * Tkinter
+* PyMongo
 * MySQL
 * MongoDB
 
