@@ -20,6 +20,8 @@ This is a simple database query desktop application. Not designed for extensive 
 ## Screenshots
 * Basic Window
 ![Example screenshot](/metaquery-db/readme/MetaQueryDB-capture1.PNG)
+![Example screenshot](/metaquery-db/readme/metaquery-capture3.PNG)
+
 
 ## Technologies
 * Python 3
