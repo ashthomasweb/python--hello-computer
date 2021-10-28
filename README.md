@@ -19,7 +19,7 @@ This is a simple database query desktop application. Not designed for extensive 
 
 ## Screenshots
 * Basic Window
-![Example screenshot](/pink-db/readme/QueryMeDB-capture1.PNG)
+![Example screenshot](/metaquery-db/readme/MetaQueryDB-capture1.PNG)
 
 ## Technologies
 * Python 3
