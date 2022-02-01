@@ -1,4 +1,4 @@
-> A Desktop Application utilizing Dependency Injection, Software Interfaces, and Layered Architecture. Built for extensibility. In-development.
+> A Desktop Application utilizing Dependency Injection, Software Interfaces, and Layered Architecture. Built for extensibility. In-development. No current release package.
 
 # Project Name
 "MetaQuery DB"
@@ -19,12 +19,12 @@ This is a simple database query desktop application. Not designed for extensive 
 
 ## Screenshots
 * Basic Window
+![Example screenshot](/metaquery-db/readme/window-view.jpg)
 ![Example screenshot](/metaquery-db/readme/MetaQueryDB-capture1.PNG)
 ![Example screenshot](/metaquery-db/readme/metaquery-capture3.PNG)
 
-
 ## Technologies
-* Python 3
+* Python 3+
 * Tkinter
 * PyMongo
 * MySQL
@@ -59,3 +59,5 @@ This was originally a learning project involving simple CRUD operations for a la
 
 ## Contact
 Created by Ashley Thomas (https://www.ashthomasweb.com/) - feel free to contact me!
+
+<!-- END of document -->

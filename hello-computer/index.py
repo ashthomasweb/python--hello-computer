@@ -9,9 +9,6 @@ import tkinter.messagebox
 import tkinter.simpledialog
 
 
-
-
-
 gui = tkinter.Tk()
 
 
@@ -80,12 +77,6 @@ response_frame.pack_propagate(False)
 # Initial 'Hello" button and beginning of name input callback chain
 Begin = tkinter.Button(greeting_frame, text ='Hello', command = hello_call_back)
 Begin.place(x=20, y=10)
-
-
-
-
-
-# Calculator
 
 
 # main window styling options
