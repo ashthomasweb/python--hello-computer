@@ -38,7 +38,7 @@ class GlobalCaller():
         try:
             myclient.drop_database(f"{entry_trunc()}")
             GlobalCaller.show_all_db()
-            logic.message_sender.set_message(f"Succesfully dropped database: {entry()}")
+            logic.message_sender.set_message(f"Successfully dropped database: {entry()}")
         except BaseException:
             logic.message_sender.set_message(format_exc(1))
 

@@ -18,5 +18,4 @@ db = Database()
 
 myclient = MongoClient("mongodb://localhost:27017/")
 
-
 # END of document

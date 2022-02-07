@@ -30,7 +30,7 @@ class GlobalCaller():
             myserver.execute(f"CREATE DATABASE {entry()}")
             myserver.execute("SHOW DATABASES")
             logic.result_sender.set_result(myserver)
-            logic.message_sender.set_message(f"Succesful creation of new database: {entry()}")
+            logic.message_sender.set_message(f"Successful creation of new database: {entry()}")
         except BaseException:
             logic.message_sender.set_message(format_exc(1))
 
@@ -51,7 +51,7 @@ class GlobalCaller():
             myserver.execute(f"DROP DATABASE {entry()}")
             myserver.execute("SHOW DATABASES")
             logic.result_sender.set_result(myserver)
-            logic.message_sender.set_message(f"Succesfully dropped database: {entry()}")
+            logic.message_sender.set_message(f"Successfully dropped database: {entry()}")
         except BaseException:
             logic.message_sender.set_message(format_exc(1))
 
